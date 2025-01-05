@@ -1,30 +1,35 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState } from 'react'
+import React from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-//import HeroSection from './components/HeroSection.jsx';
-import About from './pages/About.jsx';
-import Projects from './pages/Projects.jsx';
-import Contact from './pages/Contact.jsx';
 import Home from './pages/Home';
+import About from './pages/About';
+import Projects from './pages/Projects';
+import Contact from './pages/Contact';
 import Resume from './pages/Resume';
 import './index.css';
 
-
-function App() {
+export default function App() {
   return (
-    <Router>
+    <div>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/resume" element={<Resume />} />
-      </Routes>
+      <main className="pt-16">
+        <section id="home" className="min-h-screen bg-blue-100">
+          <Home />
+        </section>
+        <section id="about" className="min-h-screen bg-blue-200">
+          <About />
+        </section>
+        <section id="projects" className="min-h-screen bg-blue-300">
+          <Projects />
+        </section>
+        <section id="contact" className="min-h-screen bg-blue-400">
+          <Contact />
+        </section>
+        <section id="resume" className="min-h-screen bg-blue-500">
+          <Resume />
+        </section>
+      </main>
       <Footer />
-    </Router>
+    </div>
   );
 }
-
-export default App;
