@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
+import Skills from './pages/Skills';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
 import Resume from './pages/Resume';
@@ -18,6 +19,9 @@ export default function App() {
         </section>
         <section id="about" className="min-h-screen bg-blue-200">
           <About />
+        </section>
+        <section id="skills" className="min-h-screen bg-blue-400">
+          <Skills />
         </section>
         <section id="projects" className="min-h-screen bg-blue-300">
           <Projects />

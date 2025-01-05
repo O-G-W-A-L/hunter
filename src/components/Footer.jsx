@@ -1,11 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { GitlabIcon as GitHub, Linkedin, Twitter, Mail } from 'lucide-react';
+import { GitlabIcon as GitHub, Linkedin, X, Mail } from 'lucide-react';
 
 const socialLinks = [
   { Icon: GitHub, href: 'https://github.com/O-G-W-A-L' },
-  { Icon: Linkedin, href: 'https://linkedin.com/in/yourusername' },
-  { Icon: Twitter, href: 'https://twitter.com/yourusername' },
+  { Icon: Linkedin, href: 'https://linkedin.com/in/jonathan-amos-ogwal-725926285/' },
+  { Icon: X, href: 'https://x.com/Ogwal_Jonathan' },
   { Icon: Mail, href: 'mailto:your.email@example.com' },
 ];
 
