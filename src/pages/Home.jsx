@@ -17,7 +17,7 @@ export default function Home() {
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] leading-tight"
           {...fadeIn()}
         >
-          Hey, welcome to the abyss!
+          Hey, since you made it here, Welcome!
         </motion.h1>
       </header>
 
