@@ -6,6 +6,9 @@ export default {
 	],
 	theme: {
 	  extend: {
+		fontFamily: {
+			typewriter: ['Special Elite', 'monospace'],
+		  },
 		colors: {
 		  'twitter-blue': '#1DA1F2',
 

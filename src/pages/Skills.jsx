@@ -2,14 +2,40 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const skills = [
-  { name: "React.js", description: "A JavaScript library for building user interfaces.", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+  // Programming Languages
   { name: "Python", description: "A versatile programming language for web development, AI, and more.", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-  { name: "Firebase", description: "A platform for building web and mobile applications.", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
-  { name: "Tailwind CSS", description: "A utility-first CSS framework for rapid UI development.", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" },
-  { name: "Framer Motion", description: "A library for creating fluid animations in React.", logo: "https://www.svgrepo.com/show/354552/framer.svg" },
-  { name: "Git & GitHub", description: "Version control and collaboration tools for developers.", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
   { name: "JavaScript", description: "A programming language essential for web development.", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-  { name: "Vite", description: "A modern frontend tool for faster web development.", logo: "https://vitejs.dev/logo.svg" },
+
+  // Databases
+  //{ name: "Database", description: "Knowledge of working with SQL and NoSQL databases.", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
+  { name: "MongoDB", description: "A NoSQL database for storing large-scale data.", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+  { name: "PostgreSQL", description: "A powerful, open-source relational database management system.", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+  { name: "Redis", description: "A high-performance key-value store for caching and session data.", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" },
+
+  // Web Development
+  { name: "React.js", description: "A JavaScript library for building user interfaces.", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+  { name: "Node.js", description: "Server-side JavaScript runtime for building fast and scalable applications.", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+  { name: "Express.js", description: "A minimal web framework for building RESTful APIs.", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
+
+  // DevOps & Deployment
+  { name: "Docker", description: "A platform for containerizing applications for easy deployment.", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+  { name: "Nginx", description: "A high-performance web server and reverse proxy.", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" },
+
+  // Security & Authentication
+  { name: "JWT", description: "Compact, URL-safe means of representing claims between two parties.", logo: "https://upload.wikimedia.org/wikipedia/commons/7/79/JSON_Web_Token.svg" },
+
+  // Version Control
+  { name: "Git & GitHub", description: "Version control and collaboration tools for developers.", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
+
+  // Operating Systems
+  { name: "Linux", description: "Open-source operating system widely used in development and servers.", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" },
+  { name: "Windows", description: "A widely used operating system by Microsoft for personal and professional use.", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" },
+
+  // API Design & Architecture
+  { name: "GraphQL", description: "A query language for APIs to request only the needed data.", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg" },
+
+  // Platform & Tools
+  { name: "Firebase", description: "A platform for building web and mobile applications.", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
 ];
 
 export default function Skills() {
@@ -56,4 +82,3 @@ export default function Skills() {
     </div>
   );
 }
-
