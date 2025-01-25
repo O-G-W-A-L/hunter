@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
-const navItems = ['About', 'Projects', 'Contact', 'Skills', 'Resume'];
+const navItems = ['About', 'Skills', 'Projects', 'Contact', 'Resume'];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);

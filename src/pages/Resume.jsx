@@ -3,9 +3,8 @@ import { motion } from 'framer-motion';
 import { DownloadIcon, Briefcase } from 'lucide-react';
 
 const experiences = [
-  { role: "Backend Developer", company: "Afraco Tech" },
-  { role: "Software Engineer", company: "Hunters" },
-  { role: "AI Researcher", company: "Innovations Lab" },
+  { role: "Software Engineer", company: "Freelance" },
+  { role: "IT Specialist", company: "Afraco Co" },
 ];
 
 export default function Resume() {

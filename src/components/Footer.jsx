@@ -6,7 +6,7 @@ const socialLinks = [
   { Icon: GitHub, href: 'https://github.com/O-G-W-A-L' },
   { Icon: Linkedin, href: 'https://linkedin.com/in/jonathan-amos-ogwal-725926285/' },
   { Icon: X, href: 'https://x.com/Ogwal_Jonathan' },
-  { Icon: Mail, href: 'mailto:your.email@example.com' },
+  { Icon: Mail, href: 'huntertest02@gmail.com' },
 ];
 
 export default function Footer() {

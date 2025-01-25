@@ -12,21 +12,15 @@ const projects = [
   {
     name: "FreeMind",
     description: "A mind mapping tool to help users brainstorm ideas and organize thoughts effectively.",
-    link: "#",
-    tags: ["JavaScript", "D3.js", "React","LocalStorage"]
+    link: "https://github.com/O-G-W-A-L/FreeMind.git",
+    tags: ["JavaScript", "Firebase", "MongoDB", "React","Express", "Node JS", "Tailwind CSS"]
   },
   {
     name: "TabSmart",
     description: "A browser extension for managing tabs and improving your browsing experience.",
-    link: "#",
+    link: "https://github.com/O-G-W-A-L/TabSmart.git",
     tags: ["Chrome Extension", "JavaScript", "Browser API"]
   },
-  {
-    name: "CodeCollab",
-    description: "Real-time collaborative coding platform for remote pair programming.",
-    link: "#",
-    tags: ["WebSockets", "Monaco Editor", "Node.js"]
-  }
 ];
 
 const containerVariants = {

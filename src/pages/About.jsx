@@ -31,7 +31,7 @@ export default function About() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            Hi, I'm Ogwal Jonathan Amos - The Hunter, a passionate software engineer providing soluitons that work in technology. I specialize in Backend development, crafting creative and efficient solutions using python, javascript, React, Tailwind CSS, and more. My journey in the vast ocean of technology has equipped me with the skills to navigate complex challenges and bring innovative ideas to life.
+            The Hunter, a passionate software engineer providing solutions that work in technology. I specialize in Backend development, crafting creative and efficient solutions using the best practices of clean and effecicint code. My journey in the vast ocean of technology has equipped me with the skills to navigate complex challenges and bring innovative ideas to life.
           </motion.p>
         </div>
       </motion.div>
