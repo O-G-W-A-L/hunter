@@ -8,4 +8,4 @@ export default defineConfig({
     outDir: 'build',
     emptyOutDir: true,
   },
-})
+});
