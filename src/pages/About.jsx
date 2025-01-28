@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import ProfileImage from '../assets/test.jpg';  // Import the smile image
 
 export default function About() {
   return (
@@ -14,7 +15,7 @@ export default function About() {
           className="w-64 h-64 rounded-full bg-[#7FDBFF] overflow-hidden"
           whileHover={{ scale: 1.05 }}
         >
-          <img src="/placeholder.svg?height=256&width=256" alt="Ogwal" className="w-full h-full object-cover" />
+          <img src={ProfileImage} alt="Smile" className="w-full h-full object-cover" />
         </motion.div>
         <div className="flex-1">
           <motion.h1 
@@ -31,11 +32,13 @@ export default function About() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            The Hunter, a passionate software engineer providing solutions that work in technology. I specialize in Backend development, crafting creative and efficient solutions using the best practices of clean and effecicint code. My journey in the vast ocean of technology has equipped me with the skills to navigate complex challenges and bring innovative ideas to life.
+            The Hunter, a passionate software engineer providing solutions that work in technology. I specialize in
+            Backend development, crafting creative and efficient solutions using the best practices of clean and
+            efficient code. My journey in the vast ocean of technology has equipped me with the skills to navigate
+            complex challenges and bring innovative ideas to life.
           </motion.p>
         </div>
       </motion.div>
     </div>
   );
 }
-
