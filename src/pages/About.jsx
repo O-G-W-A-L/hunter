@@ -35,7 +35,7 @@ export default function About() {
             The Hunter, a passionate software engineer providing solutions that work in technology. I specialize in
             Backend development, crafting creative and efficient solutions using the best practices of clean and
             efficient code. My journey in the vast ocean of technology has equipped me with the skills to navigate
-            complex challenges and bring innovative ideas to life.
+            complex challenges and not only bring innovative ideas to life but also inspire others to get creative.
           </motion.p>
         </div>
       </motion.div>
