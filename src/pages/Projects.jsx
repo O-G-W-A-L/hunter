@@ -21,6 +21,12 @@ const projects = [
     link: "https://github.com/O-G-W-A-L/TabSmart.git",
     tags: ["Chrome Extension", "JavaScript", "Browser API"]
   },
+  {
+    name: "The Maze Game",
+    description: "A retro maze 3D game with raycasting.",
+    link: "https://github.com/O-G-W-A-L/the-maze_project.git",
+    tags: ["C", "SDL2"]
+  },
 ];
 
 const containerVariants = {
