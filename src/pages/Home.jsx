@@ -31,8 +31,7 @@ export default function Home() {
         >
           Hey there, <br />
           <span className="block text-[#FFFFFF] mt-4 font-light">
-            Welcome! Thank you for passing by, Let's build wonderful solutions
-            together. 🌟
+            Welcome! Glad to have you here, smile 😊, take you time, and let’s start building something amazing✨
           </span>
         </motion.h1>
       </header>
