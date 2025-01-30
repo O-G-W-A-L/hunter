@@ -62,7 +62,7 @@ export default function Resume() {
             whileTap={{ scale: 0.95 }}
           >
             <DownloadIcon size={20} />
-            Download Full Expedition Log
+            Download Full Resume
           </motion.a>
         </motion.div>
       </motion.div>
