@@ -32,10 +32,11 @@ export default function About() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            The Hunter, a passionate software engineer providing solutions that work in technology. I specialize in
-            Backend development, crafting creative and efficient solutions using the best practices of clean and
-            efficient code. My journey in the vast ocean of technology has equipped me with the skills to navigate
-            complex challenges and not only bring innovative ideas to life but also inspire others to get creative.
+            I am passionate software engineer. I design, develop, test and maintain software solutions to solve 
+            real-world problems efficiently. I specialize in Backend development, crafting creative and efficient 
+            solutions using the best practices of clean and efficient code. My journey in technology has equipped 
+            me with the skills to navigate complex challenges and not only bring innovative ideas to life but also 
+            inspire others to get creative.
           </motion.p>
         </div>
       </motion.div>
