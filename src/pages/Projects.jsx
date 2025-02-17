@@ -22,6 +22,12 @@ const projects = [
     tags: ["Chrome Extension", "JavaScript", "Browser API"]
   },
   {
+    name: "AdFriend",
+    description: "A chrome browser extension that intercepts and replaces ads with positive contents",
+    link: "https://github.com/O-G-W-A-L/AdFriend.git",
+    tags: ["Chrome Extension", "JavaScript", "React","HTML","Browser API"]
+  },
+  {
     name: "The Maze Game",
     description: "A retro maze 3D game with raycasting.",
     link: "https://github.com/O-G-W-A-L/the-maze_project.git",
