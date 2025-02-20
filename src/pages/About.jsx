@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import ProfileImage from '../assets/test.jpg';  // Import the smile image
+import ProfileImage from '../assets/test.jpg';
 
 export default function About() {
   return (
