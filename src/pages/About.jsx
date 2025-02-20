@@ -35,7 +35,7 @@ export default function About() {
             I am passionate software engineer. I design, develop, test and maintain software solutions to solve 
             real-world problems efficiently. I specialize in Backend development, crafting creative and efficient 
             solutions using the best practices of clean and efficient code. My journey in technology has equipped 
-            me with the skills to navigate complex challenges and not only bring innovative ideas to life but also 
+            me with the skills to navigate complex challenges and not only bring innovative ideas to life and also 
             inspire others to get creative.
           </motion.p>
         </div>
