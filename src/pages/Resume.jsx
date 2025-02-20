@@ -55,18 +55,16 @@ export default function Resume() {
           transition={{ delay: 0.8, duration: 0.5 }}
         >
           <motion.a
-            href="/path-to-resume.pdf"
-            download
+            href="mailto:huntertest02@gmail.com?subject=Request%20for%20Resume&body=Hello%2C%0A%0AI%20would%20like%20to%20request%20a%20copy%20of%20your%20resume.%0A%0AThank%20you."
             className="bg-[#7FDBFF] text-[#001F3F] px-6 py-3 rounded-full font-bold flex items-center gap-2 hover:bg-[#AEEEEE] transition-colors duration-300 text-sm sm:text-base"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             <DownloadIcon size={20} />
-            Download Full Resume
+            Request Full Resume
           </motion.a>
         </motion.div>
       </motion.div>
     </div>
   );
 }
-
