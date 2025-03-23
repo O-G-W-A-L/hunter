@@ -32,11 +32,13 @@ export default function About() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            I am passionate software engineer. I design, develop, test and maintain software solutions to solve 
-            real-world problems efficiently. I specialize in Backend development, crafting creative and efficient 
-            solutions using the best practices of clean and efficient code. My journey in technology has equipped 
-            me with the skills to navigate complex challenges and not only bring innovative ideas to life and also 
-            inspire others to get creative.
+            Jonathan Amos Ogwal - Hunter, is a freelance software engineer and writer who merges technical expertise with creative
+             storytelling to solve human-centered problems. He developed Trace-It, Adfriend, TabSmart, tools that tackle real-world
+              challenges like lost property recovery, digital wellness, and browser efficiency. Building on his early experience as 
+              a technician and instructor at AFRACO Company Limited, where he repaired tech and empowered teams, he later volunteered 
+              as a mentor at ALX, reviewing foundational projects for 50+ students. Started as a self taught coder from high school, 
+              formalised at Nkumba University and EDX, ALX’s Software Engineering programs, Hunter is not only a relentless learner 
+              but also crafts code that communicates as clearly as it functions proving technology thrives when logic meets creativity.
           </motion.p>
         </div>
       </motion.div>
