@@ -13,6 +13,11 @@ const skills = [
   { name: "Git & GitHub", description: "Version control and collaboration tools for developers.", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
   { name: "Linux", description: "Open-source operating system widely used in development and servers.", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" },
   { name: "Firebase", description: "A platform for building web and mobile applications.", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
+  { 
+    name: "Writer & Poet", 
+    description: "I craft verses and narratives, blending passion with creativity.", 
+    logo: "https://img.icons8.com/ios-filled/50/ffffff/pen.png" 
+  },
 ];
 
 export default function Skills() {
@@ -57,12 +62,10 @@ export default function Skills() {
               <h2 className="text-lg sm:text-xl font-semibold mb-1 text-[#7FDBFF] hidden sm:block">{skill.name}</h2>
               <p className="text-[#AEEEEE] text-xs sm:text-sm hidden md:block">{skill.description}</p>
             </div>
-
             {/* On smaller screens, show the description on hover */}
             <div className="absolute inset-0 bg-[#0A4D68]/90 p-4 rounded-lg flex items-center justify-center text-white opacity-0 transition-opacity duration-300 sm:hidden hover:opacity-100">
               <p className="text-center text-sm">{skill.description}</p>
             </div>
-
             {/* Make the text clearer on hover */}
             <div className="absolute inset-0 bg-[#0A4D68]/60 p-4 rounded-lg flex items-center justify-center text-white opacity-0 transition-opacity duration-300 sm:hidden hover:opacity-100 hover:bg-[#0A4D68]/40">
               <p className="text-center text-sm">{skill.description}</p>
