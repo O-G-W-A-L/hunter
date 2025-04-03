@@ -14,7 +14,7 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      className="bg-gradient-to-r from-[#001F3F] to-[#0A4D68] p-4 shadow-lg fixed top-0 w-full z-50"
+      className="bg-[#00043f] text-[#AEEEEE] p-4 shadow-lg fixed top-0 w-full z-50 backdrop-blur-sm"
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -73,4 +73,3 @@ const NavItem = ({ name, onClick }) => (
     />
   </motion.button>
 );
-

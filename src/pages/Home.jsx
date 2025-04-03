@@ -15,30 +15,36 @@ export default function Home() {
     const interval = setInterval(() => {
       setKey((prevKey) => prevKey + 1);
     }, 5000);
-
-    // Cleanup interval on component unmount
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#001F3F] via-[#0A4D68] to-[#088F8F] text-[#AEEEEE] p-4 sm:p-8 flex flex-col justify-between relative overflow-hidden">
+    <div className="min-h-screen bg-[#000f3f] text-[#AEEEEE] p-4 sm:p-8 flex flex-col justify-between relative overflow-hidden">
       <BackgroundAnimation />
 
-      <header className="z-10 mt-8 sm:mt-16">
+      <header className="z-10 mt-8 sm:mt-16 text-center">
         <motion.h1
-          className="text-lg sm:text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#34D399] to-[#4FD1C5] leading-snug tracking-wide"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold"
           {...fadeIn()}
         >
-          Hey there, <br />
-          <span className="block text-[#FFFFFF] mt-4 font-light">
-            Welcome! Glad to have you here, smile, take you time, and let’s start building something amazing together.
+          Hey there, I am a{" "}
+          <span
+            className="ml-2 text-4xl sm:text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#AEEEEE] to-[#7FDBFF]"
+          >
+            SOFTWARE ENGINEER
           </span>
         </motion.h1>
+        <motion.p
+          className="mt-4 text-lg sm:text-xl font-light"
+          {...fadeIn(0.3)}
+        >
+          Welcome! Glad to have you here. Let’s build something amazing together.
+        </motion.p>
       </header>
 
       <main className="flex-grow flex items-center justify-center z-10 my-8 sm:my-0 relative">
         <motion.div
-          className="text-center relative p-8 rounded-3xl backdrop-blur-sm bg-white bg-opacity-5 shadow-lg"
+          className="text-center relative p-8 rounded-3xl backdrop-blur-lg bg-[#000f3f]/70 shadow-xl"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
@@ -49,7 +55,6 @@ export default function Home() {
           >
             My Name is
           </motion.h2>
-
           <motion.div
             key={key} // Re-trigger animation every 5 seconds
             className="block text-white text-4xl sm:text-5xl md:text-6xl mb-2 font-typewriter drop-shadow-lg"
@@ -61,13 +66,12 @@ export default function Home() {
                 key={index}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.1, delay: 0.0 + index * 0.1 }}
+                transition={{ duration: 0.1, delay: index * 0.1 }}
               >
                 {char}
               </motion.span>
             ))}
           </motion.div>
-
           <motion.p
             className="text-lg sm:text-xl text-[#D1D5DB] mt-2 font-medium drop-shadow-md"
             {...fadeIn(1.5)}

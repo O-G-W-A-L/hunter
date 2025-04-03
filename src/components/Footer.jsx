@@ -12,7 +12,7 @@ const socialLinks = [
 export default function Footer() {
   return (
     <motion.footer 
-      className="bg-gradient-to-r from-[#001F3F] to-[#0A4D68] text-[#AEEEEE] py-8"
+      className="bg-gradient-to-r from-[#01003f] to-[#001F3F] text-[#AEEEEE] py-8"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}

@@ -9,9 +9,9 @@ const experiences = [
 
 export default function Resume() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#001F3F] via-[#0A4D68] to-[#088F8F] text-[#AEEEEE] p-4 sm:p-8 flex items-center justify-center">
+    <div className="min-h-screen bg-[#001f3f] text-[#AEEEEE] p-4 sm:p-8 flex items-center justify-center">
       <motion.div 
-        className="w-full max-w-2xl bg-[#0A4D68]/30 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-lg"
+        className="w-full max-w-2xl bg-[#001f3f]/90 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-lg border border-[#0A4D68]/30"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -34,7 +34,7 @@ export default function Resume() {
           {experiences.map((exp, index) => (
             <motion.div 
               key={index}
-              className="flex items-center space-x-4 bg-[#001F3F]/30 p-4 rounded-lg"
+              className="flex items-center space-x-4 bg-[#001f3f]/70 p-4 rounded-lg border border-[#0A4D68]/20"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.6 + index * 0.1, duration: 0.5 }}
@@ -56,7 +56,7 @@ export default function Resume() {
         >
           <motion.a
             href="mailto:huntertest02@gmail.com?subject=Request%20for%20Resume&body=Hello%2C%0A%0AI%20would%20like%20to%20request%20a%20copy%20of%20your%20resume.%0A%0AThank%20you."
-            className="bg-[#7FDBFF] text-[#001F3F] px-6 py-3 rounded-full font-bold flex items-center gap-2 hover:bg-[#AEEEEE] transition-colors duration-300 text-sm sm:text-base"
+            className="bg-[#7FDBFF] text-[#001f3f] px-6 py-3 rounded-full font-bold flex items-center gap-2 hover:bg-[#AEEEEE] transition-colors duration-300 text-sm sm:text-base border-2 border-[#001f3f]"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

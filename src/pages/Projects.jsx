@@ -13,7 +13,7 @@ const projects = [
     name: "FreeMind",
     description: "A mind mapping tool to help users brainstorm ideas and organize thoughts effectively.",
     link: "https://github.com/O-G-W-A-L/FreeMind.git",
-    tags: ["JavaScript", "Firebase", "MongoDB", "React","Express", "Node JS", "Tailwind CSS"]
+    tags: ["JavaScript", "Firebase", "MongoDB", "React", "Express", "Node JS", "Tailwind CSS"]
   },
   {
     name: "TabSmart",
@@ -25,7 +25,7 @@ const projects = [
     name: "AdFriend",
     description: "A chrome browser extension that intercepts and replaces ads with positive contents",
     link: "https://github.com/O-G-W-A-L/AdFriend.git",
-    tags: ["Chrome Extension", "JavaScript", "React","HTML","Browser API"]
+    tags: ["Chrome Extension", "JavaScript", "React", "HTML", "Browser API"]
   },
   {
     name: "The Maze Game",
@@ -35,66 +35,52 @@ const projects = [
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 }
-};
-
 export default function Projects() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#001F3F] via-[#0A4D68] to-[#088F8F] text-[#AEEEEE] p-4 sm:p-8 overflow-hidden">
-      <motion.h1 
-        className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-12 bg-clip-text text-transparent bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE]"
+    <div className="min-h-screen bg-[#001F3F] text-[#AEEEEE] p-4 sm:p-8">
+      <motion.h1
+        className="text-4xl sm:text-5xl md:text-6xl font-bold text-center mb-12 sm:mb-16 bg-clip-text text-transparent bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE]"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
         The Hunter's Projects
       </motion.h1>
-      <motion.div 
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto"
-        variants={containerVariants}
-        initial="hidden"
-        animate="show"
+      <motion.div
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 max-w-7xl mx-auto"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ staggerChildren: 0.1 }}
       >
         {projects.map((project, index) => (
           <motion.div
             key={index}
-            className="bg-[#0A4D68]/30 backdrop-blur-sm p-6 rounded-lg shadow-lg hover:shadow-[#7FDBFF]/20 transition-all duration-300 flex flex-col justify-between"
-            variants={itemVariants}
-            whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
+            className="bg-[#001F3F]/80 backdrop-blur-xl ring-1 ring-[#0A4D68] rounded-3xl shadow-2xl p-10 transition-all duration-300 hover:scale-105 hover:ring-2 hover:ring-[#7FDBFF] hover:shadow-[0_10px_25px_rgba(127,219,255,0.2)]"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
           >
             <div>
-              <h2 className="text-xl sm:text-2xl font-semibold mb-3 text-[#7FDBFF]">{project.name}</h2>
-              <p className="text-[#AEEEEE] mb-4 text-sm sm:text-base">{project.description}</p>
-              <div className="flex flex-wrap gap-2 mb-4">
+              <h2 className="text-2xl sm:text-3xl font-semibold mb-4 text-[#7FDBFF]">{project.name}</h2>
+              <p className="text-base sm:text-lg mb-6">{project.description}</p>
+              <div className="flex flex-wrap gap-3 mb-6">
                 {project.tags.map((tag, tagIndex) => (
-                  <span key={tagIndex} className="bg-[#001F3F]/50 text-[#7FDBFF] text-xs px-2 py-1 rounded-full">
+                  <span key={tagIndex} className="bg-[#0A4D68]/60 text-[#7FDBFF] text-sm px-3 py-1 rounded-full">
                     {tag}
                   </span>
                 ))}
               </div>
             </div>
-            <motion.a 
-              href={project.link} 
-              className="inline-flex items-center justify-center bg-[#7FDBFF] text-[#001F3F] px-4 py-2 rounded-full hover:bg-[#AEEEEE] transition-colors duration-300 text-sm sm:text-base"
+            <motion.a
+              href={project.link}
+              className="inline-flex items-center justify-center bg-[#7FDBFF] text-[#001F3F] px-5 py-3 rounded-full hover:bg-[#AEEEEE] transition-colors duration-300"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               Dive In
-              <ExternalLink className="ml-2 h-4 w-4" />
+              <ExternalLink className="ml-2 h-5 w-5" />
             </motion.a>
           </motion.div>
         ))}
@@ -102,4 +88,3 @@ export default function Projects() {
     </div>
   );
 }
-
