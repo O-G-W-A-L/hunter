@@ -6,7 +6,8 @@ import { Star, TrendingUp } from "lucide-react"
 
 const skillCategories = [
   {
-    title: "Frontend Development",
+    title: "Frontend",
+    fullTitle: "Frontend Development",
     icon: "🎨",
     skills: [
       {
@@ -36,7 +37,8 @@ const skillCategories = [
     ],
   },
   {
-    title: "Backend Development",
+    title: "Backend",
+    fullTitle: "Backend Development",
     icon: "⚙️",
     skills: [
       {
@@ -66,7 +68,8 @@ const skillCategories = [
     ],
   },
   {
-    title: "Database & Cloud",
+    title: "Database",
+    fullTitle: "Database & Cloud",
     icon: "☁️",
     skills: [
       {
@@ -96,7 +99,8 @@ const skillCategories = [
     ],
   },
   {
-    title: "Tools & Others",
+    title: "Tools",
+    fullTitle: "Tools & Others",
     icon: "🛠️",
     skills: [
       {
@@ -161,29 +165,52 @@ export default function Skills() {
             <div className="w-24 h-1 bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] mx-auto rounded-full mt-6"></div>
           </motion.div>
 
-          {/* Category Tabs */}
+          {/* Category Tabs - Mobile Optimized */}
           <motion.div
-            className="flex flex-wrap justify-center gap-4 mb-12"
+            className="mb-12"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            {skillCategories.map((category, index) => (
-              <motion.button
-                key={index}
-                onClick={() => setActiveCategory(index)}
-                className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
-                  activeCategory === index
-                    ? "bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] text-[#001a3f]"
-                    : "bg-[#001a3f]/50 text-[#AEEEEE] hover:bg-[#7FDBFF]/10 border border-[#7FDBFF]/30"
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span className="mr-2">{category.icon}</span>
-                {category.title}
-              </motion.button>
-            ))}
+            {/* Mobile: Grid Layout */}
+            <div className="grid grid-cols-2 gap-3 sm:hidden">
+              {skillCategories.map((category, index) => (
+                <motion.button
+                  key={index}
+                  onClick={() => setActiveCategory(index)}
+                  className={`px-4 py-3 rounded-xl font-semibold text-sm transition-all duration-300 ${
+                    activeCategory === index
+                      ? "bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] text-[#001a3f]"
+                      : "bg-[#001a3f]/50 text-[#AEEEEE] hover:bg-[#7FDBFF]/10 border border-[#7FDBFF]/30"
+                  }`}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <span className="block">{category.icon}</span>
+                  <span className="block mt-1">{category.title}</span>
+                </motion.button>
+              ))}
+            </div>
+
+            {/* Desktop: Flex Layout */}
+            <div className="hidden sm:flex flex-wrap justify-center gap-4">
+              {skillCategories.map((category, index) => (
+                <motion.button
+                  key={index}
+                  onClick={() => setActiveCategory(index)}
+                  className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+                    activeCategory === index
+                      ? "bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] text-[#001a3f]"
+                      : "bg-[#001a3f]/50 text-[#AEEEEE] hover:bg-[#7FDBFF]/10 border border-[#7FDBFF]/30"
+                  }`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <span className="mr-2">{category.icon}</span>
+                  {category.fullTitle}
+                </motion.button>
+              ))}
+            </div>
           </motion.div>
 
           {/* Skills Grid */}

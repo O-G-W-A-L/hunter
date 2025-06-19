@@ -69,12 +69,12 @@ const projects = [
 ]
 
 const categories = [
-  "All",
-  "Web Application",
-  "Browser Extension",
-  "Game Development",
-  "Productivity Tool",
-  "Digital Wellness",
+  { short: "All", full: "All" },
+  { short: "Web App", full: "Web Application" },
+  { short: "Extension", full: "Browser Extension" },
+  { short: "Game", full: "Game Development" },
+  { short: "Tool", full: "Productivity Tool" },
+  { short: "Wellness", full: "Digital Wellness" },
 ]
 
 export default function Projects() {
@@ -115,28 +115,52 @@ export default function Projects() {
             <div className="w-24 h-1 bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] mx-auto rounded-full mt-6"></div>
           </motion.div>
 
-          {/* Category Filter */}
+          {/* Category Filter - Mobile Optimized */}
           <motion.div
-            className="flex flex-wrap justify-center gap-3 mb-12"
+            className="mb-12"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            {categories.map((category) => (
-              <motion.button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                  selectedCategory === category
-                    ? "bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] text-[#001F3F]"
-                    : "bg-[#001F3F]/50 text-[#AEEEEE] hover:bg-[#7FDBFF]/10 border border-[#7FDBFF]/30"
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {category}
-              </motion.button>
-            ))}
+            {/* Mobile: Horizontal Scroll */}
+            <div className="sm:hidden">
+              <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+                {categories.map((category) => (
+                  <motion.button
+                    key={category.full}
+                    onClick={() => setSelectedCategory(category.full)}
+                    className={`px-4 py-2 rounded-full font-medium text-sm whitespace-nowrap transition-all duration-300 flex-shrink-0 ${
+                      selectedCategory === category.full
+                        ? "bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] text-[#001F3F]"
+                        : "bg-[#001F3F]/50 text-[#AEEEEE] hover:bg-[#7FDBFF]/10 border border-[#7FDBFF]/30"
+                    }`}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    {category.short}
+                  </motion.button>
+                ))}
+              </div>
+            </div>
+
+            {/* Desktop: Flex Layout */}
+            <div className="hidden sm:flex flex-wrap justify-center gap-3">
+              {categories.map((category) => (
+                <motion.button
+                  key={category.full}
+                  onClick={() => setSelectedCategory(category.full)}
+                  className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                    selectedCategory === category.full
+                      ? "bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] text-[#001F3F]"
+                      : "bg-[#001F3F]/50 text-[#AEEEEE] hover:bg-[#7FDBFF]/10 border border-[#7FDBFF]/30"
+                  }`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {category.full}
+                </motion.button>
+              ))}
+            </div>
           </motion.div>
 
           {/* Projects Grid */}

@@ -29,9 +29,6 @@ export default function App() {
         <section id="contact" className="min-h-screen bg-blue-400">
           <Contact />
         </section>
-        <section id="resume" className="min-h-screen bg-blue-500">
-          <Resume />
-        </section>
       </main>
       <Footer />
     </div>
