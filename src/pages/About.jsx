@@ -32,8 +32,8 @@ export default function About() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            Jonathan Amos Ogwal - Hunter, is a freelance software engineer and writer who merges technical expertise with creative storytelling to solve human-centered problems. He developed Trace-It, Adfriend, TabSmart, tools that tackle real-world challenges like lost property recovery, digital wellness, and browser efficiency. Building on his early experience as a technician and instructor at AFRACO Company Limited, where he repaired tech and empowered teams, he later volunteered as a mentor at ALX, reviewing foundational projects for 50+ students. Started as a self-taught coder from high school, formalized at Nkumba University and EDX, ALX's Software Engineering programs, Hunter is not only a relentless learner but also crafts code that communicates as clearly as it functions proving technology thrives when logic meets creativity.
-          </motion.p>
+            A software engineer who merges technical expertise with creative storytelling. I develop innovative tools like Trace-It, Adfriend, and TabSmart to solve real-world challenges, from lost property recovery to digital wellness.
+            I craft intuitive digital experiences that address user needs and drive results. With a focus on clear communication and collaboration, I manage projects from concept to deployment. Let’s work together to tackle your challenges and bring your ideas to life!          </motion.p>
         </div>
       </motion.div>
     </div>
