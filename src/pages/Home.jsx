@@ -1,172 +1,268 @@
-import React, { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+"use client"
+
+import { useEffect, useRef, useState } from "react"
+import { motion } from "framer-motion"
+import { ChevronDown } from "lucide-react"
 
 const fadeIn = (delay = 0) => ({
-  initial: { opacity: 0, y: 20 },
+  initial: { opacity: 0, y: 30 },
   animate: { opacity: 1, y: 0 },
-  transition: { delay, duration: 0.8 },
-});
+  transition: { delay, duration: 1, ease: "easeOut" },
+})
 
 export default function Home() {
-  const [key, setKey] = useState(0);
+  const [key, setKey] = useState(0)
 
-  // Re-trigger the typing effect every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      setKey((prevKey) => prevKey + 1);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
+      setKey((prevKey) => prevKey + 1)
+    }, 6000)
+    return () => clearInterval(interval)
+  }, [])
+
+  const scrollToNext = () => {
+    const aboutSection = document.getElementById("about")
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: "smooth" })
+    }
+  }
 
   return (
-    <div className="min-h-screen bg-[#000f3f] text-[#AEEEEE] p-4 sm:p-8 flex flex-col justify-between relative overflow-hidden">
+    <div id="home" className="min-h-screen bg-[#000f3f] text-[#AEEEEE] relative overflow-hidden flex flex-col">
       <BackgroundAnimation />
 
-      <header className="z-10 mt-8 sm:mt-16 text-center">
-        <motion.h1
-          className="text-3xl sm:text-4xl md:text-5xl font-bold"
-          {...fadeIn()}
-        >
-          Hey there, I am a{" "}
-          <span
-            className="ml-2 text-4xl sm:text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#AEEEEE] to-[#7FDBFF]"
-          >
-            SOFTWARE ENGINEER
-          </span>
-        </motion.h1>
-        <motion.p
-          className="mt-4 text-lg sm:text-xl font-light"
-          {...fadeIn(0.3)}
-        >
-          Welcome! Glad to have you here. Let’s build something amazing together.
-        </motion.p>
-      </header>
-
-      <main className="flex-grow flex items-center justify-center z-10 my-8 sm:my-0 relative">
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col justify-center items-center px-4 sm:px-8 pt-20">
+        {/* Hero Section */}
         <motion.div
-          className="text-center relative p-8 rounded-3xl backdrop-blur-lg bg-[#000f3f]/70 shadow-xl"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
+          className="text-center z-10 max-w-6xl mx-auto"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.2 }}
         >
-          <motion.h2
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#AEEEEE] to-[#7FDBFF] mb-4 drop-shadow-md"
-            {...fadeIn(0.3)}
-          >
-            My Name is
-          </motion.h2>
-          <motion.div
-            key={key} // Re-trigger animation every 5 seconds
-            className="block text-white text-4xl sm:text-5xl md:text-6xl mb-2 font-typewriter drop-shadow-lg"
-            initial={{ opacity: 1 }}
-            animate={{ opacity: 1 }}
-          >
-            {Array.from("OGWAL JONATHAN AMOS").map((char, index) => (
+          {/* Greeting */}
+          <motion.div className="mb-8" {...fadeIn(0.2)}>
+            <motion.span
+              className="inline-block text-lg sm:text-xl text-[#7FDBFF] font-medium mb-4"
+              animate={{ opacity: [0.7, 1, 0.7] }}
+              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+            >
+              Hello, World! 👋
+            </motion.span>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+              I'm a{" "}
               <motion.span
-                key={index}
+                className="bg-gradient-to-r from-[#7FDBFF] via-[#AEEEEE] to-[#7FDBFF] bg-clip-text text-transparent bg-300% animate-gradient"
+                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+              >
+                SOFTWARE ENGINEER
+              </motion.span>
+            </h1>
+          </motion.div>
+
+          {/* Name Animation */}
+          <motion.div className="mb-8" {...fadeIn(0.6)}>
+            <motion.h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-4 text-[#AEEEEE]/80">
+              My name is
+            </motion.h2>
+            <motion.div key={key} className="relative">
+              <motion.h1
+                className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white drop-shadow-2xl whitespace-nowrap"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+              >
+                {Array.from("OGWAL JONATHAN AMOS").map((char, index) => (
+                  <motion.span
+                    key={`${key}-${index}`}
+                    className="inline-block"
+                    initial={{ opacity: 0, y: 50, rotateX: -90 }}
+                    animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                    transition={{
+                      duration: 0.6,
+                      delay: index * 0.08,
+                      ease: "easeOut",
+                    }}
+                    whileHover={{
+                      scale: 1.1,
+                      color: "#7FDBFF",
+                      transition: { duration: 0.2 },
+                    }}
+                  >
+                    {char === " " ? "\u00A0" : char}
+                  </motion.span>
+                ))}
+              </motion.h1>
+              <motion.p
+                className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#7FDBFF] font-bold mt-4 tracking-wider"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.1, delay: index * 0.1 }}
+                transition={{ delay: 2, duration: 0.8 }}
               >
-                {char}
-              </motion.span>
-            ))}
+                - THE HUNTER -
+              </motion.p>
+            </motion.div>
           </motion.div>
+
+          {/* Tagline */}
           <motion.p
-            className="text-lg sm:text-xl text-[#D1D5DB] mt-2 font-medium drop-shadow-md"
-            {...fadeIn(1.5)}
+            className="text-lg sm:text-xl md:text-2xl text-[#AEEEEE]/90 max-w-3xl mx-auto leading-relaxed"
+            {...fadeIn(1.2)}
           >
-            - THE HUNTER -
+            Crafting digital experiences that solve real-world problems.
+            <br />
+            <span className="text-[#7FDBFF]">Let's build something extraordinary together.</span>
           </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div className="flex flex-col sm:flex-row gap-4 justify-center mt-12" {...fadeIn(1.6)}>
+            <motion.button
+              onClick={() => document.getElementById("projects").scrollIntoView({ behavior: "smooth" })}
+              className="px-8 py-4 bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] text-[#001f3f] font-bold rounded-full text-lg shadow-2xl"
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 20px 40px rgba(127, 219, 255, 0.3)",
+                y: -2,
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
+              View My Work
+            </motion.button>
+            <motion.button
+              onClick={() => document.getElementById("contact").scrollIntoView({ behavior: "smooth" })}
+              className="px-8 py-4 border-2 border-[#7FDBFF] text-[#7FDBFF] font-bold rounded-full text-lg hover:bg-[#7FDBFF] hover:text-[#001f3f] transition-all duration-300"
+              whileHover={{
+                scale: 1.05,
+                y: -2,
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Get In Touch
+            </motion.button>
+          </motion.div>
         </motion.div>
-      </main>
+      </div>
+
+      {/* Scroll Indicator */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 2, duration: 0.8 }}
+      >
+        <motion.button
+          onClick={scrollToNext}
+          className="flex flex-col items-center text-[#7FDBFF] hover:text-[#AEEEEE] transition-colors duration-300"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+        >
+          <span className="text-sm mb-2 font-medium">Scroll to explore</span>
+          <ChevronDown size={24} />
+        </motion.button>
+      </motion.div>
     </div>
-  );
+  )
 }
 
 const BackgroundAnimation = () => {
-  const canvasRef = useRef(null);
+  const canvasRef = useRef(null)
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-    let animationFrameId;
+    const canvas = canvasRef.current
+    const ctx = canvas.getContext("2d")
+    let animationFrameId
 
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
+    }
 
-    window.addEventListener("resize", resizeCanvas);
-    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas)
+    resizeCanvas()
 
-    const particles = [];
-    const particleCount = 30;
-    const colors = ["#AEEEEE", "#7FDBFF", "#34D399", "#4FD1C5"];
+    const particles = []
+    const particleCount = 40
+    const colors = ["#AEEEEE", "#7FDBFF", "#34D399", "#4FD1C5"]
 
     for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        radius: Math.random() * 4 + 2,
+        radius: Math.random() * 3 + 1,
         color: colors[Math.floor(Math.random() * colors.length)],
-        speedX: Math.random() * 0.3 - 0.15,
-        speedY: Math.random() * 0.3 - 0.15,
-        opacity: Math.random() * 0.5 + 0.5,
-      });
+        speedX: Math.random() * 0.4 - 0.2,
+        speedY: Math.random() * 0.4 - 0.2,
+        opacity: Math.random() * 0.6 + 0.4,
+        pulse: Math.random() * 0.02 + 0.01,
+      })
     }
 
     const drawParticle = (particle) => {
-      ctx.beginPath();
-      ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+      ctx.beginPath()
+      ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2)
       ctx.fillStyle = `${particle.color}${Math.floor(particle.opacity * 255)
         .toString(16)
-        .padStart(2, "0")}`;
-      ctx.fill();
-    };
+        .padStart(2, "0")}`
+      ctx.fill()
+
+      // Add glow effect
+      ctx.shadowBlur = 10
+      ctx.shadowColor = particle.color
+      ctx.fill()
+      ctx.shadowBlur = 0
+    }
 
     const connectParticles = () => {
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
+          const dx = particles[i].x - particles[j].x
+          const dy = particles[i].y - particles[j].y
+          const distance = Math.sqrt(dx * dx + dy * dy)
 
-          if (distance < 150) {
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(174, 238, 238, ${0.15 - distance / 1000})`;
-            ctx.lineWidth = 1;
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
+          if (distance < 120) {
+            ctx.beginPath()
+            ctx.strokeStyle = `rgba(127, 219, 255, ${0.2 - distance / 600})`
+            ctx.lineWidth = 1
+            ctx.moveTo(particles[i].x, particles[i].y)
+            ctx.lineTo(particles[j].x, particles[j].y)
+            ctx.stroke()
           }
         }
       }
-    };
+    }
 
     const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
 
       particles.forEach((particle) => {
-        drawParticle(particle);
-        particle.x += particle.speedX;
-        particle.y += particle.speedY;
+        drawParticle(particle)
 
-        if (particle.x < 0 || particle.x > canvas.width) particle.speedX *= -1;
-        if (particle.y < 0 || particle.y > canvas.height) particle.speedY *= -1;
-      });
+        particle.x += particle.speedX
+        particle.y += particle.speedY
 
-      connectParticles();
-      animationFrameId = requestAnimationFrame(animate);
-    };
+        // Pulse effect
+        particle.opacity += particle.pulse
+        if (particle.opacity >= 1 || particle.opacity <= 0.2) {
+          particle.pulse *= -1
+        }
 
-    animate();
+        // Boundary collision
+        if (particle.x < 0 || particle.x > canvas.width) particle.speedX *= -1
+        if (particle.y < 0 || particle.y > canvas.height) particle.speedY *= -1
+      })
+
+      connectParticles()
+      animationFrameId = requestAnimationFrame(animate)
+    }
+
+    animate()
 
     return () => {
-      window.removeEventListener("resize", resizeCanvas);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
+      window.removeEventListener("resize", resizeCanvas)
+      cancelAnimationFrame(animationFrameId)
+    }
+  }, [])
 
-  return <canvas ref={canvasRef} className="absolute inset-0" />;
-};
+  return <canvas ref={canvasRef} className="absolute inset-0" />
+}

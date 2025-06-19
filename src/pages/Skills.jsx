@@ -1,107 +1,258 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+"use client"
 
-// Added skill images
-const skills = [
-  { 
-    name: "Python", 
-    description: "A versatile programming language for web development, AI, and more.", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+import React, { useState } from "react"
+import { motion, useInView } from "framer-motion"
+import { Star, TrendingUp } from "lucide-react"
+
+const skillCategories = [
+  {
+    title: "Frontend Development",
+    icon: "🎨",
+    skills: [
+      {
+        name: "React.js",
+        level: 90,
+        image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+        experience: "2+ years",
+      },
+      {
+        name: "JavaScript",
+        level: 85,
+        image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+        experience: "3+ years",
+      },
+      {
+        name: "HTML/CSS",
+        level: 95,
+        image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+        experience: "5+ years",
+      },
+      {
+        name: "Tailwind CSS",
+        level: 88,
+        image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg",
+        experience: "2+ years",
+      },
+    ],
   },
-  { 
-    name: "JavaScript", 
-    description: "A programming language essential for web development.", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+  {
+    title: "Backend Development",
+    icon: "⚙️",
+    skills: [
+      {
+        name: "Node.js",
+        level: 82,
+        image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+        experience: "2+ years",
+      },
+      {
+        name: "Express.js",
+        level: 80,
+        image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+        experience: "2+ years",
+      },
+      {
+        name: "Python",
+        level: 85,
+        image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+        experience: "4+ years",
+      },
+      {
+        name: "RESTful APIs",
+        level: 88,
+        image: "https://img.icons8.com/color/48/api-settings.png",
+        experience: "2+ years",
+      },
+    ],
   },
-  { 
-    name: "MongoDB", 
-    description: "A NoSQL database for storing large-scale data.", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
+  {
+    title: "Database & Cloud",
+    icon: "☁️",
+    skills: [
+      {
+        name: "MongoDB",
+        level: 78,
+        image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+        experience: "2+ years",
+      },
+      {
+        name: "PostgreSQL",
+        level: 75,
+        image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+        experience: "2+ years",
+      },
+      {
+        name: "Firebase",
+        level: 82,
+        image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
+        experience: "3+ years",
+      },
+      {
+        name: "Docker",
+        level: 70,
+        image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+        experience: "1+ years",
+      },
+    ],
   },
-  { 
-    name: "PostgreSQL", 
-    description: "A powerful, open-source relational database management system.", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+  {
+    title: "Tools & Others",
+    icon: "🛠️",
+    skills: [
+      {
+        name: "Git & GitHub",
+        level: 90,
+        image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+        experience: "5+ years",
+      },
+      {
+        name: "Linux",
+        level: 85,
+        image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg",
+        experience: "3+ years",
+      },
+      {
+        name: "Chrome Extensions",
+        level: 88,
+        image: "https://img.icons8.com/color/48/chrome.png",
+        experience: "1+ years",
+      },
+      {
+        name: "Creative Writing",
+        level: 95,
+        image: "https://img.icons8.com/ios-filled/50/ffffff/pen.png",
+        experience: "6+ years",
+      },
+    ],
   },
-  { 
-    name: "React.js", 
-    description: "A JavaScript library for building user interfaces.", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
-  },
-  { 
-    name: "Node.js", 
-    description: "Server-side JavaScript runtime for building fast and scalable applications.", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
-  },
-  { 
-    name: "Express.js", 
-    description: "A minimal web framework for building RESTful APIs.", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg"
-  },
-  { 
-    name: "Docker", 
-    description: "A platform for containerizing applications for easy deployment.", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
-  },
-  { 
-    name: "Git & GitHub", 
-    description: "Version control and collaboration tools for developers.", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
-  },
-  { 
-    name: "Linux", 
-    description: "Open-source operating system widely used in development and servers.", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"
-  },
-  { 
-    name: "Firebase", 
-    description: "A platform for building web and mobile applications.", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg"
-  },
-  { 
-    name: "Writer & Poet", 
-    description: "I craft verses and narratives, blending passion with creativity.", 
-    image: "https://img.icons8.com/ios-filled/50/ffffff/pen.png"
-  },
-];
+]
 
 export default function Skills() {
+  const [activeCategory, setActiveCategory] = useState(0)
+  const ref = React.useRef(null)
+  const isInView = useInView(ref, { once: true, threshold: 0.1 })
+
   return (
-    <div className="min-h-screen bg-[#001a3f] text-[#AEEEEE] p-4 sm:p-8">
-      <motion.h1
-        className="text-4xl sm:text-5xl md:text-6xl font-bold text-center mb-12 sm:mb-16 bg-clip-text text-transparent bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE]"
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        The Hunter's Arsenal
-      </motion.h1>
-      <motion.div
-        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 sm:gap-10 max-w-7xl mx-auto"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ staggerChildren: 0.1 }}
-      >
-        {skills.map((skill, index) => (
+    <div
+      id="skills"
+      className="min-h-screen bg-gradient-to-br from-[#001a3f] via-[#00243f] to-[#002d4f] text-[#AEEEEE] py-20"
+    >
+      <div className="container mx-auto px-4 sm:px-8">
+        <motion.div
+          ref={ref}
+          className="max-w-7xl mx-auto"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          {/* Header */}
           <motion.div
-            key={index}
-            className="bg-[#001a3f]/80 backdrop-blur-xl rounded-3xl shadow-2xl p-8 flex flex-col items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-xl"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 50 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <img
-              src={skill.image}
-              alt={`${skill.name} logo`}
-              className="w-16 h-16 sm:w-20 sm:h-20 object-contain mb-6"
-            />
-            <div className="text-center">
-              <h2 className="text-xl sm:text-2xl font-semibold mb-3 text-[#7FDBFF]">{skill.name}</h2>
-              <p className="text-sm sm:text-base text-[#AEEEEE]">{skill.description}</p>
-            </div>
+            <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] bg-clip-text text-transparent">
+              The Hunter's Arsenal
+            </h2>
+            <p className="text-xl text-[#AEEEEE]/80 max-w-3xl mx-auto">
+              A comprehensive toolkit forged through experience, passion, and continuous learning
+            </p>
+            <div className="w-24 h-1 bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] mx-auto rounded-full mt-6"></div>
           </motion.div>
-        ))}
-      </motion.div>
+
+          {/* Category Tabs */}
+          <motion.div
+            className="flex flex-wrap justify-center gap-4 mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            {skillCategories.map((category, index) => (
+              <motion.button
+                key={index}
+                onClick={() => setActiveCategory(index)}
+                className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+                  activeCategory === index
+                    ? "bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] text-[#001a3f]"
+                    : "bg-[#001a3f]/50 text-[#AEEEEE] hover:bg-[#7FDBFF]/10 border border-[#7FDBFF]/30"
+                }`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span className="mr-2">{category.icon}</span>
+                {category.title}
+              </motion.button>
+            ))}
+          </motion.div>
+
+          {/* Skills Grid */}
+          <motion.div
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            {skillCategories[activeCategory].skills.map((skill, index) => (
+              <motion.div
+                key={`${activeCategory}-${index}`}
+                className="bg-gradient-to-br from-[#001a3f]/80 to-[#00243f]/80 backdrop-blur-xl rounded-2xl p-4 md:p-6 border border-[#7FDBFF]/20 hover:border-[#7FDBFF]/50 transition-all duration-300 hover:shadow-2xl hover:shadow-[#7FDBFF]/10"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ scale: 1.02, y: -5 }}
+              >
+                {/* Skill Icon */}
+                <div className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 md:mb-4">
+                  <img
+                    src={skill.image || "/placeholder.svg"}
+                    alt={`${skill.name} logo`}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+
+                {/* Skill Name */}
+                <h3 className="text-lg md:text-xl font-bold text-center mb-2 md:mb-3 text-[#7FDBFF]">{skill.name}</h3>
+
+                {/* Experience */}
+                <div className="flex items-center justify-center mb-3 md:mb-4 text-xs md:text-sm text-[#AEEEEE]/70">
+                  <TrendingUp size={12} className="mr-1" />
+                  {skill.experience}
+                </div>
+
+                {/* Proficiency Bar */}
+                <div className="mb-3">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs md:text-sm text-[#AEEEEE]/80">Level</span>
+                    <span className="text-xs md:text-sm font-bold text-[#7FDBFF]">{skill.level}%</span>
+                  </div>
+                  <div className="w-full bg-[#001a3f]/50 rounded-full h-1.5 md:h-2">
+                    <motion.div
+                      className="h-full bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] rounded-full"
+                      initial={{ width: 0 }}
+                      animate={{ width: `${skill.level}%` }}
+                      transition={{ duration: 1, delay: 0.8 + index * 0.1 }}
+                    />
+                  </div>
+                </div>
+
+                {/* Star Rating */}
+                <div className="flex justify-center">
+                  {[...Array(5)].map((_, starIndex) => (
+                    <Star
+                      key={starIndex}
+                      size={12}
+                      className={`${
+                        starIndex < Math.floor(skill.level / 20) ? "text-[#7FDBFF] fill-current" : "text-[#AEEEEE]/30"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+      </div>
     </div>
-  );
+  )
 }
