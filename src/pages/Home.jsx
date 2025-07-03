@@ -144,23 +144,6 @@ export default function Home() {
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 2, duration: 0.8 }}
-      >
-        <motion.button
-          onClick={scrollToNext}
-          className="flex flex-col items-center text-[#7FDBFF] hover:text-[#AEEEEE] transition-colors duration-300"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-        >
-          <span className="text-sm mb-2 font-medium">Scroll to explore</span>
-          <ChevronDown size={24} />
-        </motion.button>
-      </motion.div>
     </div>
   )
 }

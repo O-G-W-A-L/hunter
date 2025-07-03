@@ -6,6 +6,19 @@ import { ExternalLink, Eye, Star } from "lucide-react"
 
 const projects = [
   {
+    name: "ContentForgeAI",
+    description: "A platform for repurposing content using AI, set to be released on Monday, 7th July, 2025.",
+    link: "#",
+    tags: ["React", "AI", "Content Management", "Web App"],
+    category: "Web Application",
+    status: "Development",
+    features: ["Content repurposing", "AI-powered transformation", "Multi-format support", "User-friendly interface"],
+    preview: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&h=300&fit=crop&crop=center",
+    isLive: false,
+    color: "from-blue-500 to-indigo-500",
+    showReleaseMessage: true
+  },
+  {
     name: "Trace-It",
     description:
       "A comprehensive web application for tracking and managing lost property with real-time updates and notifications.",
@@ -247,6 +260,12 @@ export default function Projects() {
                         className="p-3 bg-[#7FDBFF]/20 rounded-full hover:bg-[#7FDBFF]/30 transition-colors duration-300"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
+                        onClick={(e) => {
+                          if (project.showReleaseMessage) {
+                            e.preventDefault();
+                            alert("To be released on 7th July, 2025. Stay tuned!");
+                          }
+                        }}
                       >
                         <ExternalLink className="text-[#7FDBFF]" size={20} />
                       </motion.a>
@@ -298,6 +317,12 @@ export default function Projects() {
                     className="w-full bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] text-[#001F3F] px-4 py-3 rounded-full font-semibold text-center hover:shadow-lg transition-all duration-300 flex items-center justify-center"
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
+                    onClick={(e) => {
+                      if (project.showReleaseMessage) {
+                        e.preventDefault();
+                        alert("To be released on 7th July, 2025. Stay tuned!");
+                      }
+                    }}
                   >
                     Dive In
                     <ExternalLink size={16} className="ml-2" />
@@ -385,6 +410,12 @@ export default function Projects() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-full bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] text-[#001F3F] px-6 py-3 rounded-full font-bold text-center hover:shadow-lg transition-all duration-300 flex items-center justify-center"
+                      onClick={(e) => {
+                        if (selectedProject.showReleaseMessage) {
+                          e.preventDefault();
+                          alert("To be released on 7th July, 2025. Stay tuned!");
+                        }
+                      }}
                     >
                       <ExternalLink className="mr-2" size={20} />
                       Visit Project
