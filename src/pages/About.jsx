@@ -67,7 +67,7 @@ export default function About() {
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              {/* Profile Image - Responsive Sizing */}
+              {/* Profile Image - ResponsiveSizing */}
               <motion.div
                 className="w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 mx-auto relative"
                 whileHover={{ scale: 1.05 }}
