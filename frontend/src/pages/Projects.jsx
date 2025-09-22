@@ -7,7 +7,7 @@ import { ExternalLink, Eye, Star } from "lucide-react"
 const projects = [
   {
     name: "FlipCraft",
-    description: "A platform for repurposing content using AI, set to be released on Saturday, 20th September, 2025.",
+    description: "A platform for repurposing content using AI, set to be released on Monday, 20th October, 2025.",
     link: "#",
     tags: ["React", "AI", "Content Management", "Web App"],
     category: "Web Application",
@@ -30,6 +30,18 @@ const projects = [
     preview: "https://trace-it-tau.vercel.app/",
     isLive: true,
     color: "from-blue-500 to-cyan-500",
+  },
+  {
+    name: "Afraco",
+    description: "A tech company website offering innovative solutions and services.",
+    link: "https://afraco.vercel.app/",
+    tags: ["React", "Vercel", "Tech Company"],
+    category: "Web Application",
+    status: "Live",
+    features: ["Company portfolio", "Service showcase", "Contact forms", "Responsive design"],
+    preview: "https://afraco.vercel.app/",
+    isLive: true,
+    color: "from-teal-500 to-green-500",
   },
   {
     name: "FreeMind",
@@ -263,7 +275,7 @@ export default function Projects() {
                         onClick={(e) => {
                           if (project.showReleaseMessage) {
                             e.preventDefault();
-                            alert("To be released on 20th September, 2025. Stay tuned!");
+                            alert("To be released on 20th October, 2025. Stay tuned!");
                           }
                         }}
                       >
@@ -320,7 +332,7 @@ export default function Projects() {
                     onClick={(e) => {
                       if (project.showReleaseMessage) {
                         e.preventDefault();
-                        alert("To be released on 20th September, 2025. Stay tuned!");
+                        alert("To be released on 20th October, 2025. Stay tuned!");
                       }
                     }}
                   >
@@ -413,7 +425,7 @@ export default function Projects() {
                       onClick={(e) => {
                         if (selectedProject.showReleaseMessage) {
                           e.preventDefault();
-                          alert("To be released on 20th September, 2025. Stay tuned!");
+                          alert("To be released on 20th October, 2025. Stay tuned!");
                         }
                       }}
                     >
