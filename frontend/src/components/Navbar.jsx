@@ -97,12 +97,13 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <motion.button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden relative w-8 h-8 flex flex-col justify-center items-center"
+            className="md:hidden relative w-10 h-10 flex flex-col justify-center items-center touch-manipulation"
             whileTap={{ scale: 0.9 }}
+            aria-label="Toggle mobile menu"
           >
             <motion.span
               className="w-6 h-0.5 bg-[#7FDBFF] absolute"
-              animate={isOpen ? { rotate: 45, y: 0 } : { rotate: 0, y: -4 }}
+              animate={isOpen ? { rotate: 45, y: 0 } : { rotate: 0, y: -6 }}
               transition={{ duration: 0.3 }}
             />
             <motion.span
@@ -112,7 +113,7 @@ export default function Navbar() {
             />
             <motion.span
               className="w-6 h-0.5 bg-[#7FDBFF] absolute"
-              animate={isOpen ? { rotate: -45, y: 0 } : { rotate: 0, y: 4 }}
+              animate={isOpen ? { rotate: -45, y: 0 } : { rotate: 0, y: 6 }}
               transition={{ duration: 0.3 }}
             />
           </motion.button>
@@ -122,11 +123,11 @@ export default function Navbar() {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              className="md:hidden mt-4 py-4 border-t border-[#7FDBFF]/20"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
+              className="md:hidden mt-4 py-4 border-t border-[#7FDBFF]/20 overflow-hidden"
+              initial={{ opacity: 0, maxHeight: 0 }}
+              animate={{ opacity: 1, maxHeight: 300 }}
+              exit={{ opacity: 0, maxHeight: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
             >
               {navItems.map((item, index) => (
                 <motion.button
