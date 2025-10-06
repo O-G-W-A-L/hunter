@@ -98,9 +98,9 @@ export default function Footer() {
             transition={{ duration: 0.6, delay: 0.8 }}
           >
             <div className="flex items-center text-[#AEEEEE]/60 text-sm mb-4 sm:mb-0">
-              <span>Made with</span>
-              <Heart className="mx-2 text-red-400" size={14} fill="currentColor" />
-              <span>© {new Date().getFullYear()} Hunter</span>
+              <span>Hunter Made iT</span>
+              {/* <Heart className="mx-2 text-red-400" size={14} fill="currentColor" /> */}
+              {/*<span>© {new Date().getFullYear()} Hunter</span> */}
             </div>
 
             <motion.button
