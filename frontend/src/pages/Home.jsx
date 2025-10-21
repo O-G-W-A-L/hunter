@@ -3,12 +3,17 @@
 import { useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion"
 import { ChevronDown } from "lucide-react"
-
-const fadeIn = (delay = 0) => ({
-  initial: { opacity: 0, y: 30 },
-  animate: { opacity: 1, y: 0 },
-  transition: { delay, duration: 1, ease: "easeOut" },
-})
+import {
+  appleEasing,
+  timing,
+  stagger,
+  containerVariants,
+  itemVariants,
+  hoverLift,
+  pressAnimation,
+  parallaxVariants,
+  prefersReducedMotion
+} from "../utils/animations"
 
 export default function Home() {
   const [key, setKey] = useState(0)
@@ -28,33 +33,37 @@ export default function Home() {
   }
 
   return (
-    <div id="home" className="min-h-screen bg-[#000f3f] text-[#AEEEEE] relative overflow-hidden flex flex-col">
+    <div id="home" className="min-h-screen bg-gradient-to-br from-[#00243f] via-[#002d4f] to-[#00365f] text-[#AEEEEE] relative overflow-hidden overflow-x-hidden flex flex-col py-20">
       <BackgroundAnimation />
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col justify-center items-center px-4 sm:px-8 pt-20">
+      <div className="flex-1 flex flex-col justify-center items-center container mx-auto px-4 sm:px-8">
         {/* Hero Section */}
         <motion.div
-          className="text-center z-10 max-w-6xl mx-auto"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.2 }}
+          className="text-center z-10 w-full max-w-6xl mx-auto"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
         >
           {/* Greeting */}
-          <motion.div className="mb-8" {...fadeIn(0.2)}>
+          <motion.div
+            className="mb-8"
+            variants={itemVariants}
+            transition={{ delay: stagger.tight }}
+          >
             <motion.span
               className="inline-block text-lg sm:text-xl text-[#7FDBFF] font-medium mb-4"
-              animate={{ opacity: [0.7, 1, 0.7] }}
-              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+              animate={prefersReducedMotion ? {} : { opacity: [0.7, 1, 0.7] }}
+              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: appleEasing.smooth }}
             >
               Hello, World! 👋
             </motion.span>
             <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
               I'm a{" "}
               <motion.span
-                className="bg-gradient-to-r from-[#7FDBFF] via-[#AEEEEE] to-[#7FDBFF] bg-clip-text text-transparent bg-300% animate-gradient"
-                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-                transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                className="bg-gradient-to-r from-[#7FDBFF] via-[#AEEEEE] to-[#7FDBFF] bg-clip-text text-transparent bg-300%"
+                animate={prefersReducedMotion ? {} : { backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, ease: appleEasing.linear }}
               >
                 SOFTWARE ENGINEER
               </motion.span>
@@ -62,32 +71,36 @@ export default function Home() {
           </motion.div>
 
           {/* Name Animation */}
-          <motion.div className="mb-8" {...fadeIn(0.6)}>
+          <motion.div
+            className="mb-8"
+            variants={itemVariants}
+            transition={{ delay: stagger.normal }}
+          >
             <motion.h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-4 text-[#AEEEEE]/80">
               My name is
             </motion.h2>
             <motion.div key={key} className="relative">
               <motion.h1
                 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white drop-shadow-2xl whitespace-nowrap"
-                initial={{ opacity: 0, scale: 0.8 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
+                transition={{ duration: timing.slower, ease: appleEasing.smooth }}
               >
                 {Array.from("OGWAL JONATHAN AMOS").map((char, index) => (
                   <motion.span
                     key={`${key}-${index}`}
                     className="inline-block"
-                    initial={{ opacity: 0, y: 50, rotateX: -90 }}
+                    initial={{ opacity: 0, y: 30, rotateX: -45 }}
                     animate={{ opacity: 1, y: 0, rotateX: 0 }}
                     transition={{
-                      duration: 0.6,
-                      delay: index * 0.08,
-                      ease: "easeOut",
+                      duration: timing.normal,
+                      delay: index * stagger.tight,
+                      ease: appleEasing.smooth,
                     }}
-                    whileHover={{
-                      scale: 1.1,
+                    whileHover={prefersReducedMotion ? {} : {
+                      scale: 1.05,
                       color: "#7FDBFF",
-                      transition: { duration: 0.2 },
+                      transition: { duration: timing.fast, ease: appleEasing.spring }
                     }}
                   >
                     {char === " " ? "\u00A0" : char}
@@ -96,9 +109,9 @@ export default function Home() {
               </motion.h1>
               <motion.p
                 className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#7FDBFF] font-bold mt-4 tracking-wider"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 2, duration: 0.8 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: timing.slower, duration: timing.normal, ease: appleEasing.smooth }}
               >
                 - THE HUNTER -
               </motion.p>
@@ -108,7 +121,8 @@ export default function Home() {
           {/* Tagline */}
           <motion.p
             className="text-lg sm:text-xl md:text-2xl text-[#AEEEEE]/90 max-w-3xl mx-auto leading-relaxed"
-            {...fadeIn(1.2)}
+            variants={itemVariants}
+            transition={{ delay: stagger.loose }}
           >
             Crafting digital experiences that solve real-world problems.
             <br />
@@ -116,27 +130,24 @@ export default function Home() {
           </motion.p>
 
           {/* CTA Buttons */}
-          <motion.div className="flex flex-col sm:flex-row gap-4 justify-center mt-12" {...fadeIn(1.6)}>
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 justify-center mt-12"
+            variants={itemVariants}
+            transition={{ delay: stagger.looser }}
+          >
             <motion.button
               onClick={() => document.getElementById("projects").scrollIntoView({ behavior: "smooth" })}
-              className="px-8 py-4 bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] text-[#001f3f] font-bold rounded-full text-lg shadow-2xl"
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 20px 40px rgba(127, 219, 255, 0.3)",
-                y: -2,
-              }}
-              whileTap={{ scale: 0.95 }}
+              className="px-8 py-4 bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] text-[#001f3f] font-bold rounded-full text-lg shadow-2xl hover:shadow-3xl transition-all duration-300"
+              whileHover={prefersReducedMotion ? {} : hoverLift}
+              whileTap={prefersReducedMotion ? {} : pressAnimation}
             >
               View My Work
             </motion.button>
             <motion.button
               onClick={() => document.getElementById("contact").scrollIntoView({ behavior: "smooth" })}
               className="px-8 py-4 border-2 border-[#7FDBFF] text-[#7FDBFF] font-bold rounded-full text-lg hover:bg-[#7FDBFF] hover:text-[#001f3f] transition-all duration-300"
-              whileHover={{
-                scale: 1.05,
-                y: -2,
-              }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={prefersReducedMotion ? {} : hoverLift}
+              whileTap={prefersReducedMotion ? {} : pressAnimation}
             >
               Get In Touch
             </motion.button>

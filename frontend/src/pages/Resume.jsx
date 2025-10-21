@@ -58,10 +58,10 @@ export default function Resume() {
       id="resume"
       className="min-h-screen bg-gradient-to-br from-[#001f3f] via-[#00243f] to-[#002d4f] text-[#AEEEEE] py-20"
     >
-      <div className="container mx-auto px-4 sm:px-8">
+      <div className="w-full px-4 sm:px-8">
         <motion.div
           ref={ref}
-          className="max-w-6xl mx-auto"
+          className="w-full max-w-6xl mx-auto"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.8 }}

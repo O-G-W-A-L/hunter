@@ -3,7 +3,17 @@
 import React, { useState } from "react"
 import { motion, useInView } from "framer-motion"
 import { Code, Lightbulb, Target, Users } from "lucide-react"
-import ProfileImage from '../assets/test.jpg';
+import ProfileImage from '../assets/test.jpg'
+import {
+  appleEasing,
+  timing,
+  stagger,
+  containerVariants,
+  itemVariants,
+  hoverLift,
+  pressAnimation,
+  prefersReducedMotion
+} from "../utils/animations"
 
 const highlights = [
   {
@@ -36,42 +46,45 @@ export default function About() {
   return (
     <div
       id="about"
-      className="min-h-screen bg-gradient-to-br from-[#00153f] via-[#001a3f] to-[#00243f] text-[#AEEEEE] py-20"
+      className="min-h-screen bg-gradient-to-br from-[#00153f] via-[#001a3f] to-[#00243f] text-[#AEEEEE] py-20 overflow-x-hidden"
     >
       <div className="container mx-auto px-4 sm:px-8">
         <motion.div
           ref={ref}
-          className="max-w-7xl mx-auto"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.8 }}
+          className="w-full max-w-7xl mx-auto"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
         >
           {/* Header */}
           <motion.div
             className="text-center mb-16"
-            initial={{ opacity: 0, y: 50 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            variants={itemVariants}
+            transition={{ delay: stagger.tight }}
           >
             <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] bg-clip-text text-transparent">
               About The Hunter
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] mx-auto rounded-full"></div>
+            <motion.div
+              className="w-24 h-1 bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] mx-auto rounded-full"
+              initial={{ scaleX: 0 }}
+              animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
+              transition={{ duration: timing.normal, delay: timing.normal, ease: appleEasing.smooth }}
+            />
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Profile Section */}
             <motion.div
               className="relative"
-              initial={{ opacity: 0, x: -50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              variants={itemVariants}
+              transition={{ delay: stagger.normal }}
             >
               {/* Profile Image - ResponsiveSizing */}
               <motion.div
                 className="w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 mx-auto relative"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
+                whileHover={prefersReducedMotion ? {} : hoverLift}
+                transition={{ duration: timing.fast, ease: appleEasing.spring }}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] rounded-full p-1">
                   <div className="w-full h-full bg-[#00153f] rounded-full p-2 sm:p-3 lg:p-4">
@@ -86,16 +99,16 @@ export default function About() {
                 {/* Floating Elements */}
                 <motion.div
                   className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 bg-[#7FDBFF]/20 rounded-full flex items-center justify-center backdrop-blur-sm"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                  animate={prefersReducedMotion ? {} : { rotate: 360 }}
+                  transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: appleEasing.linear }}
                 >
                   <Code className="text-[#7FDBFF]" size={16} />
                 </motion.div>
 
                 <motion.div
                   className="absolute -bottom-2 -left-2 sm:-bottom-4 sm:-left-4 w-6 h-6 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-[#AEEEEE]/20 rounded-full flex items-center justify-center backdrop-blur-sm"
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
+                  animate={prefersReducedMotion ? {} : { y: [0, -10, 0] }}
+                  transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, ease: appleEasing.smooth }}
                 >
                   <Lightbulb className="text-[#AEEEEE]" size={14} />
                 </motion.div>
@@ -105,9 +118,8 @@ export default function About() {
             {/* Content Section */}
             <motion.div
               className="space-y-8"
-              initial={{ opacity: 0, x: 50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              variants={itemVariants}
+              transition={{ delay: stagger.loose }}
             >
               <div className="space-y-4 text-lg leading-relaxed">
                 <p>
@@ -122,8 +134,18 @@ export default function About() {
               </div>
 
               {/* Highlights */}
-              <div className="space-y-4">
-                <h4 className="text-xl font-semibold text-[#AEEEEE] mb-4">What Drives Me</h4>
+              <motion.div
+                className="space-y-4"
+                variants={containerVariants}
+                initial="hidden"
+                animate={isInView ? "visible" : "hidden"}
+              >
+                <motion.h4
+                  className="text-xl font-semibold text-[#AEEEEE] mb-4"
+                  variants={itemVariants}
+                >
+                  What Drives Me
+                </motion.h4>
                 {highlights.map((highlight, index) => (
                   <motion.div
                     key={index}
@@ -133,22 +155,27 @@ export default function About() {
                         : "bg-[#00153f]/50 border border-transparent hover:border-[#7FDBFF]/20"
                     }`}
                     onClick={() => setActiveHighlight(index)}
-                    whileHover={{ scale: 1.02 }}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ duration: 0.5, delay: 1.2 + index * 0.1 }}
+                    variants={itemVariants}
+                    whileHover={prefersReducedMotion ? {} : hoverLift}
+                    whileTap={prefersReducedMotion ? {} : pressAnimation}
+                    transition={{ duration: timing.fast, ease: appleEasing.spring }}
                   >
                     <div className="flex items-start space-x-4">
-                      <div
+                      <motion.div
                         className={`p-2 rounded-lg ${
                           activeHighlight === index ? "bg-[#7FDBFF]/20" : "bg-[#AEEEEE]/10"
                         }`}
+                        animate={{
+                          scale: activeHighlight === index ? 1.1 : 1,
+                          rotate: activeHighlight === index ? 5 : 0
+                        }}
+                        transition={{ duration: timing.fast, ease: appleEasing.spring }}
                       >
                         <highlight.icon
                           className={activeHighlight === index ? "text-[#7FDBFF]" : "text-[#AEEEEE]"}
                           size={20}
                         />
-                      </div>
+                      </motion.div>
                       <div>
                         <h5
                           className={`font-semibold mb-1 ${
@@ -162,7 +189,7 @@ export default function About() {
                     </div>
                   </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </motion.div>
           </div>
         </motion.div>

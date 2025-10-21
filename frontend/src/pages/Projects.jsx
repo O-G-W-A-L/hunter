@@ -3,11 +3,21 @@
 import React, { useState } from "react"
 import { motion, useInView, AnimatePresence } from "framer-motion"
 import { ExternalLink, Eye, Star } from "lucide-react"
+import {
+  appleEasing,
+  timing,
+  stagger,
+  containerVariants,
+  itemVariants,
+  hoverLift,
+  pressAnimation,
+  prefersReducedMotion
+} from "../utils/animations"
 
 const projects = [
   {
     name: "FlipCraft",
-    description: "A platform for repurposing content using AI, set to be released on Monday, 20th October, 2025.",
+    description: "A platform for repurposing content using AI, set to be released on Monday, 8th November, 2025.",
     link: "#",
     tags: ["React", "AI", "Content Management", "Web App"],
     category: "Web Application",
@@ -114,22 +124,21 @@ export default function Projects() {
   return (
     <div
       id="projects"
-      className="min-h-screen bg-gradient-to-br from-[#001F3F] via-[#00243f] to-[#002d4f] text-[#AEEEEE] py-20"
+      className="min-h-screen bg-gradient-to-br from-[#00243f] via-[#002d4f] to-[#00365f] text-[#AEEEEE] py-20 overflow-x-hidden"
     >
       <div className="container mx-auto px-4 sm:px-8">
         <motion.div
           ref={ref}
-          className="max-w-7xl mx-auto"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.8 }}
+          className="w-full max-w-7xl mx-auto"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
         >
           {/* Header */}
           <motion.div
             className="text-center mb-16"
-            initial={{ opacity: 0, y: 50 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            variants={itemVariants}
+            transition={{ delay: stagger.tight }}
           >
             <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] bg-clip-text text-transparent">
               The Hunter's Projects
@@ -137,15 +146,19 @@ export default function Projects() {
             <p className="text-xl text-[#AEEEEE]/80 max-w-3xl mx-auto">
               Innovative solutions crafted with passion, precision, and purpose
             </p>
-            <div className="w-24 h-1 bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] mx-auto rounded-full mt-6"></div>
+            <motion.div
+              className="w-24 h-1 bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] mx-auto rounded-full mt-6"
+              initial={{ scaleX: 0 }}
+              animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
+              transition={{ duration: timing.normal, delay: timing.normal, ease: appleEasing.smooth }}
+            />
           </motion.div>
 
           {/* Category Filter - Mobile Optimized */}
           <motion.div
             className="mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            variants={itemVariants}
+            transition={{ delay: stagger.normal }}
           >
             {/* Mobile: Horizontal Scroll */}
             <div className="sm:hidden">
@@ -159,8 +172,12 @@ export default function Projects() {
                         ? "bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] text-[#001F3F]"
                         : "bg-[#001F3F]/50 text-[#AEEEEE] hover:bg-[#7FDBFF]/10 border border-[#7FDBFF]/30"
                     }`}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    whileHover={prefersReducedMotion ? {} : hoverLift}
+                    whileTap={prefersReducedMotion ? {} : pressAnimation}
+                    animate={{
+                      scale: selectedCategory === category.full ? 1.05 : 1
+                    }}
+                    transition={{ duration: timing.fast, ease: appleEasing.spring }}
                   >
                     {category.short}
                   </motion.button>
@@ -179,8 +196,12 @@ export default function Projects() {
                       ? "bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] text-[#001F3F]"
                       : "bg-[#001F3F]/50 text-[#AEEEEE] hover:bg-[#7FDBFF]/10 border border-[#7FDBFF]/30"
                   }`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={prefersReducedMotion ? {} : hoverLift}
+                  whileTap={prefersReducedMotion ? {} : pressAnimation}
+                  animate={{
+                    scale: selectedCategory === category.full ? 1.05 : 1
+                  }}
+                  transition={{ duration: timing.fast, ease: appleEasing.spring }}
                 >
                   {category.full}
                 </motion.button>
@@ -189,14 +210,19 @@ export default function Projects() {
           </motion.div>
 
           {/* Projects Grid */}
-          <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
             {filteredProjects.map((project, index) => (
               <motion.div
                 key={project.name}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                variants={itemVariants}
                 className="group relative bg-gradient-to-br from-[#001F3F]/80 to-[#00243f]/80 backdrop-blur-xl rounded-3xl overflow-hidden border border-[#7FDBFF]/20 hover:border-[#7FDBFF]/50 transition-all duration-500 hover:shadow-2xl hover:shadow-[#7FDBFF]/10"
+                whileHover={prefersReducedMotion ? {} : hoverLift}
+                transition={{ duration: timing.fast, ease: appleEasing.spring }}
               >
                 {/* Project Preview */}
                 <div className="relative h-48 overflow-hidden">
@@ -255,13 +281,19 @@ export default function Projects() {
                   )}
 
                   {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-[#001F3F]/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <motion.div
+                    className="absolute inset-0 bg-[#001F3F]/90 flex items-center justify-center"
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                    transition={{ duration: timing.fast, ease: appleEasing.smooth }}
+                  >
                     <div className="flex space-x-4">
                       <motion.button
                         onClick={() => setSelectedProject(project)}
                         className="p-3 bg-[#7FDBFF]/20 rounded-full hover:bg-[#7FDBFF]/30 transition-colors duration-300"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
+                        whileHover={prefersReducedMotion ? {} : { scale: 1.1, rotate: 5 }}
+                        whileTap={prefersReducedMotion ? {} : pressAnimation}
+                        transition={{ duration: timing.fast, ease: appleEasing.spring }}
                       >
                         <Eye className="text-[#7FDBFF]" size={20} />
                       </motion.button>
@@ -270,19 +302,20 @@ export default function Projects() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="p-3 bg-[#7FDBFF]/20 rounded-full hover:bg-[#7FDBFF]/30 transition-colors duration-300"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
+                        whileHover={prefersReducedMotion ? {} : { scale: 1.1, rotate: -5 }}
+                        whileTap={prefersReducedMotion ? {} : pressAnimation}
+                        transition={{ duration: timing.fast, ease: appleEasing.spring }}
                         onClick={(e) => {
                           if (project.showReleaseMessage) {
                             e.preventDefault();
-                            alert("To be released on 20th October, 2025. Stay tuned!");
+                            alert("To be released on 8th November, 2025. Stay tuned!");
                           }
                         }}
                       >
                         <ExternalLink className="text-[#7FDBFF]" size={20} />
                       </motion.a>
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
 
                 {/* Project Content */}
@@ -327,12 +360,13 @@ export default function Projects() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] text-[#001F3F] px-4 py-3 rounded-full font-semibold text-center hover:shadow-lg transition-all duration-300 flex items-center justify-center"
-                    whileHover={{ scale: 1.02, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
+                    whileHover={prefersReducedMotion ? {} : hoverLift}
+                    whileTap={prefersReducedMotion ? {} : pressAnimation}
+                    transition={{ duration: timing.fast, ease: appleEasing.spring }}
                     onClick={(e) => {
                       if (project.showReleaseMessage) {
                         e.preventDefault();
-                        alert("To be released on 20th October, 2025. Stay tuned!");
+                        alert("To be released on 8th November, 2025. Stay tuned!");
                       }
                     }}
                   >
@@ -425,7 +459,7 @@ export default function Projects() {
                       onClick={(e) => {
                         if (selectedProject.showReleaseMessage) {
                           e.preventDefault();
-                          alert("To be released on 20th October, 2025. Stay tuned!");
+                          alert("To be released on 8th November, 2025. Stay tuned!");
                         }
                       }}
                     >

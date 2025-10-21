@@ -3,6 +3,16 @@
 import React, { useState } from "react"
 import { motion, useInView } from "framer-motion"
 import { Star, TrendingUp } from "lucide-react"
+import {
+  appleEasing,
+  timing,
+  stagger,
+  containerVariants,
+  itemVariants,
+  hoverLift,
+  pressAnimation,
+  prefersReducedMotion
+} from "../utils/animations"
 
 const skillCategories = [
   {
@@ -139,22 +149,21 @@ export default function Skills() {
   return (
     <div
       id="skills"
-      className="min-h-screen bg-gradient-to-br from-[#001a3f] via-[#00243f] to-[#002d4f] text-[#AEEEEE] py-20"
+      className="min-h-screen bg-gradient-to-br from-[#001a3f] via-[#00243f] to-[#002d4f] text-[#AEEEEE] py-20 overflow-x-hidden"
     >
       <div className="container mx-auto px-4 sm:px-8">
         <motion.div
           ref={ref}
-          className="max-w-7xl mx-auto"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.8 }}
+          className="w-full max-w-7xl mx-auto"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
         >
           {/* Header */}
           <motion.div
             className="text-center mb-16"
-            initial={{ opacity: 0, y: 50 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            variants={itemVariants}
+            transition={{ delay: stagger.tight }}
           >
             <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] bg-clip-text text-transparent">
               The Hunter's Arsenal
@@ -162,15 +171,19 @@ export default function Skills() {
             <p className="text-xl text-[#AEEEEE]/80 max-w-3xl mx-auto">
               A comprehensive toolkit forged through experience, passion, and continuous learning
             </p>
-            <div className="w-24 h-1 bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] mx-auto rounded-full mt-6"></div>
+            <motion.div
+              className="w-24 h-1 bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] mx-auto rounded-full mt-6"
+              initial={{ scaleX: 0 }}
+              animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
+              transition={{ duration: timing.normal, delay: timing.normal, ease: appleEasing.smooth }}
+            />
           </motion.div>
 
           {/* Category Tabs - Mobile Optimized */}
           <motion.div
             className="mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            variants={itemVariants}
+            transition={{ delay: stagger.normal }}
           >
             {/* Mobile: Grid Layout */}
             <div className="grid grid-cols-2 gap-3 sm:hidden">
@@ -183,8 +196,13 @@ export default function Skills() {
                       ? "bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] text-[#001a3f]"
                       : "bg-[#001a3f]/50 text-[#AEEEEE] hover:bg-[#7FDBFF]/10 border border-[#7FDBFF]/30"
                   }`}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  whileHover={prefersReducedMotion ? {} : hoverLift}
+                  whileTap={prefersReducedMotion ? {} : pressAnimation}
+                  animate={{
+                    scale: activeCategory === index ? 1.05 : 1,
+                    backgroundColor: activeCategory === index ? undefined : undefined
+                  }}
+                  transition={{ duration: timing.fast, ease: appleEasing.spring }}
                 >
                   <span className="block">{category.icon}</span>
                   <span className="block mt-1">{category.title}</span>
@@ -203,8 +221,12 @@ export default function Skills() {
                       ? "bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] text-[#001a3f]"
                       : "bg-[#001a3f]/50 text-[#AEEEEE] hover:bg-[#7FDBFF]/10 border border-[#7FDBFF]/30"
                   }`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={prefersReducedMotion ? {} : hoverLift}
+                  whileTap={prefersReducedMotion ? {} : pressAnimation}
+                  animate={{
+                    scale: activeCategory === index ? 1.05 : 1
+                  }}
+                  transition={{ duration: timing.fast, ease: appleEasing.spring }}
                 >
                   <span className="mr-2">{category.icon}</span>
                   {category.fullTitle}
@@ -216,27 +238,30 @@ export default function Skills() {
           {/* Skills Grid */}
           <motion.div
             className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
           >
             {skillCategories[activeCategory].skills.map((skill, index) => (
               <motion.div
                 key={`${activeCategory}-${index}`}
                 className="bg-gradient-to-br from-[#001a3f]/80 to-[#00243f]/80 backdrop-blur-xl rounded-2xl p-4 md:p-6 border border-[#7FDBFF]/20 hover:border-[#7FDBFF]/50 transition-all duration-300 hover:shadow-2xl hover:shadow-[#7FDBFF]/10"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ scale: 1.02, y: -5 }}
+                variants={itemVariants}
+                whileHover={prefersReducedMotion ? {} : hoverLift}
+                transition={{ duration: timing.fast, ease: appleEasing.spring }}
               >
                 {/* Skill Icon */}
-                <div className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 md:mb-4">
+                <motion.div
+                  className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 md:mb-4"
+                  whileHover={prefersReducedMotion ? {} : { scale: 1.1, rotate: 5 }}
+                  transition={{ duration: timing.fast, ease: appleEasing.spring }}
+                >
                   <img
                     src={skill.image || "/placeholder.svg"}
                     alt={`${skill.name} logo`}
                     className="w-full h-full object-contain"
                   />
-                </div>
+                </motion.div>
 
                 {/* Skill Name */}
                 <h3 className="text-lg md:text-xl font-bold text-center mb-2 md:mb-3 text-[#7FDBFF]">{skill.name}</h3>
@@ -257,24 +282,47 @@ export default function Skills() {
                     <motion.div
                       className="h-full bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] rounded-full"
                       initial={{ width: 0 }}
-                      animate={{ width: `${skill.level}%` }}
-                      transition={{ duration: 1, delay: 0.8 + index * 0.1 }}
+                      animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
+                      transition={{
+                        duration: timing.slower,
+                        delay: index * stagger.tight,
+                        ease: appleEasing.smooth
+                      }}
                     />
                   </div>
                 </div>
 
                 {/* Star Rating */}
-                <div className="flex justify-center">
+                <motion.div
+                  className="flex justify-center"
+                  initial={{ opacity: 0 }}
+                  animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                  transition={{
+                    duration: timing.normal,
+                    delay: timing.slower + index * stagger.tight,
+                    ease: appleEasing.smooth
+                  }}
+                >
                   {[...Array(5)].map((_, starIndex) => (
-                    <Star
+                    <motion.div
                       key={starIndex}
-                      size={12}
-                      className={`${
-                        starIndex < Math.floor(skill.level / 20) ? "text-[#7FDBFF] fill-current" : "text-[#AEEEEE]/30"
-                      }`}
-                    />
+                      initial={{ scale: 0, rotate: -180 }}
+                      animate={isInView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }}
+                      transition={{
+                        duration: timing.fast,
+                        delay: timing.slower + index * stagger.tight + starIndex * 0.05,
+                        ease: appleEasing.bounce
+                      }}
+                    >
+                      <Star
+                        size={12}
+                        className={`${
+                          starIndex < Math.floor(skill.level / 20) ? "text-[#7FDBFF] fill-current" : "text-[#AEEEEE]/30"
+                        }`}
+                      />
+                    </motion.div>
                   ))}
-                </div>
+                </motion.div>
               </motion.div>
             ))}
           </motion.div>
