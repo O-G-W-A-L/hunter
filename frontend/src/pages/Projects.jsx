@@ -17,7 +17,7 @@ import {
 const projects = [
   {
     name: "FlipCraft",
-    description: "A platform for repurposing content using AI, set to be released on Monday, 8th November, 2025.",
+    description: "A platform for repurposing content using AI, set to be released soon.",
     link: "#",
     tags: ["React", "AI", "Content Management", "Web App"],
     category: "Web Application",
@@ -308,7 +308,7 @@ export default function Projects() {
                         onClick={(e) => {
                           if (project.showReleaseMessage) {
                             e.preventDefault();
-                            alert("To be released on 8th November, 2025. Stay tuned!");
+                            alert("Set to be released soon. Stay tuned!");
                           }
                         }}
                       >
@@ -366,7 +366,7 @@ export default function Projects() {
                     onClick={(e) => {
                       if (project.showReleaseMessage) {
                         e.preventDefault();
-                        alert("To be released on 8th November, 2025. Stay tuned!");
+                        alert("Set to be released soon. Stay tuned!");
                       }
                     }}
                   >
@@ -459,7 +459,7 @@ export default function Projects() {
                       onClick={(e) => {
                         if (selectedProject.showReleaseMessage) {
                           e.preventDefault();
-                          alert("To be released on 8th November, 2025. Stay tuned!");
+                          alert("Set to be released soon. Stay tuned!");
                         }
                       }}
                     >
