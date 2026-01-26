@@ -46,88 +46,93 @@ export default function About() {
   return (
     <div
       id="about"
-      className="min-h-screen bg-gradient-to-br from-[#00153f] via-[#001a3f] to-[#00243f] text-[#AEEEEE] py-20 overflow-x-hidden"
+      className="min-h-screen bg-prussian text-ivory section-luxury relative overflow-x-hidden grain"
     >
-      <div className="container mx-auto px-4 sm:px-8">
+      {/* Old Money Editorial Background Pattern */}
+      <div className="absolute inset-0 opacity-[0.02]">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 1px, transparent 1px),
+                           radial-gradient(circle at 80% 20%, rgba(139, 125, 107, 0.1) 1px, transparent 1px),
+                           radial-gradient(circle at 40% 40%, rgba(245, 243, 239, 0.05) 1px, transparent 1px)`,
+          backgroundSize: '80px 80px, 60px 60px, 100px 100px'
+        }} />
+      </div>
+
+      <div className="container-luxury relative z-10">
         <motion.div
           ref={ref}
-          className="w-full max-w-7xl mx-auto"
+          className="w-full max-w-6xl mx-auto"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
           {/* Header */}
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-24"
             variants={itemVariants}
             transition={{ delay: stagger.tight }}
           >
-            <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] bg-clip-text text-transparent">
+            <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-medium mb-8 text-ivory tracking-tight">
               About The Hunter
             </h2>
             <motion.div
-              className="w-24 h-1 bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] mx-auto rounded-full"
+              className="w-32 h-px bg-gradient-to-r from-gold to-warm-gold mx-auto"
               initial={{ scaleX: 0 }}
               animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
               transition={{ duration: timing.normal, delay: timing.normal, ease: appleEasing.smooth }}
             />
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-20 items-center lg:flex-row flex-col">
             {/* Profile Section */}
             <motion.div
-              className="relative"
+              className="relative order-1 lg:order-1"
               variants={itemVariants}
               transition={{ delay: stagger.normal }}
             >
-              {/* Profile Image - ResponsiveSizing */}
+              {/* Profile Image */}
+              {/* Profile Image */}
               <motion.div
-                className="w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 mx-auto relative"
-                whileHover={prefersReducedMotion ? {} : hoverLift}
-                transition={{ duration: timing.fast, ease: appleEasing.spring }}
+                className="w-full max-w-sm mx-auto relative"
+                whileHover={prefersReducedMotion ? {} : { y: -5 }}
+                transition={{ duration: timing.slow, ease: appleEasing.smooth }}
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] rounded-full p-1">
-                  <div className="w-full h-full bg-[#00153f] rounded-full p-2 sm:p-3 lg:p-4">
-                    <img
-                      src={ProfileImage}
-                      alt="Ogwal Jonathan Amos"
-                      className="w-full h-full object-cover rounded-full"
-                    />
-                  </div>
+                {/* Decorative Frame */}
+                <div className="absolute -inset-4 border border-gold/20 rounded-t-[10rem] rounded-b-[3rem] scale-105" />
+                <div className="absolute -inset-2 border border-ivory/10 rounded-t-[10rem] rounded-b-[3rem] delay-75 transition-transform duration-500 ease-out group-hover:scale-105" />
+
+                {/* Main Image Container */}
+                <div className="relative h-[28rem] sm:h-[32rem] rounded-t-[10rem] rounded-b-[3rem] overflow-hidden border-[3px] border-ivory/10 shadow-2xl group cursor-none">
+                  <div className="absolute inset-0 bg-prussian/20 z-10 transition-colors duration-700 group-hover:bg-transparent mix-blend-multiply" />
+
+                  <img
+                    src={ProfileImage}
+                    alt="Ogwal Jonathan Amos"
+                    className="w-full h-full object-cover transition-all duration-700 filter grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-110 ease-out"
+                  />
+
+                  {/* Inner Border/Vignette */}
+                  <div className="absolute inset-0 shadow-[inset_0_0_50px_rgba(0,0,0,0.5)] z-20 pointer-events-none" />
                 </div>
-
-                {/* Floating Elements */}
-                <motion.div
-                  className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 bg-[#7FDBFF]/20 rounded-full flex items-center justify-center backdrop-blur-sm"
-                  animate={prefersReducedMotion ? {} : { rotate: 360 }}
-                  transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: appleEasing.linear }}
-                >
-                  <Code className="text-[#7FDBFF]" size={16} />
-                </motion.div>
-
-                <motion.div
-                  className="absolute -bottom-2 -left-2 sm:-bottom-4 sm:-left-4 w-6 h-6 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-[#AEEEEE]/20 rounded-full flex items-center justify-center backdrop-blur-sm"
-                  animate={prefersReducedMotion ? {} : { y: [0, -10, 0] }}
-                  transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, ease: appleEasing.smooth }}
-                >
-                  <Lightbulb className="text-[#AEEEEE]" size={14} />
-                </motion.div>
               </motion.div>
             </motion.div>
 
             {/* Content Section */}
             <motion.div
-              className="space-y-8"
+              className="space-y-10 order-1 lg:order-2"
               variants={itemVariants}
               transition={{ delay: stagger.loose }}
             >
-              <div className="space-y-4 text-lg leading-relaxed">
+              <div className="space-y-6 text-lg md:text-xl leading-relaxed text-light-grey">
                 <p>
-                  I'm a <span className="text-[#7FDBFF] font-semibold">software engineer</span> who believes in the
+                  I'm a <span className="text-ivory font-medium">software engineer</span> who believes in the
                   power of technology to transform ideas into reality. My journey began with curiosity and has evolved
                   into a passion for creating digital solutions that make a difference.
                 </p>
-                <p>I focus on solving real-world problems through innovative technology.</p>
+                <p>
+                  I focus on solving real-world problems through innovative technology, crafting experiences that are
+                  both functional and beautiful.
+                </p>
                 <p>
                   I can both build and tell a story through code, communicate with clarity, and deliver effectively.
                 </p>
@@ -135,60 +140,54 @@ export default function About() {
 
               {/* Highlights */}
               <motion.div
-                className="space-y-4"
+                className="space-y-6"
                 variants={containerVariants}
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
               >
                 <motion.h4
-                  className="text-xl font-semibold text-[#AEEEEE] mb-4"
+                  className="text-2xl font-serif font-medium text-ivory mb-8"
                   variants={itemVariants}
                 >
                   What Drives Me
                 </motion.h4>
-                {highlights.map((highlight, index) => (
-                  <motion.div
-                    key={index}
-                    className={`p-4 rounded-xl cursor-pointer transition-all duration-300 ${
-                      activeHighlight === index
-                        ? "bg-[#7FDBFF]/10 border border-[#7FDBFF]/30"
-                        : "bg-[#00153f]/50 border border-transparent hover:border-[#7FDBFF]/20"
-                    }`}
-                    onClick={() => setActiveHighlight(index)}
-                    variants={itemVariants}
-                    whileHover={prefersReducedMotion ? {} : hoverLift}
-                    whileTap={prefersReducedMotion ? {} : pressAnimation}
-                    transition={{ duration: timing.fast, ease: appleEasing.spring }}
-                  >
-                    <div className="flex items-start space-x-4">
-                      <motion.div
-                        className={`p-2 rounded-lg ${
-                          activeHighlight === index ? "bg-[#7FDBFF]/20" : "bg-[#AEEEEE]/10"
+                <div className="grid gap-4">
+                  {highlights.map((highlight, index) => (
+                    <motion.div
+                      key={index}
+                      className={`p-6 rounded-xl cursor-pointer transition-all duration-400 ${activeHighlight === index
+                          ? "bg-navy-soft shadow-natural border-2 border-taupe"
+                          : "bg-navy-soft/10 hover:bg-navy-soft hover:shadow-soft border border-transparent"
                         }`}
-                        animate={{
-                          scale: activeHighlight === index ? 1.1 : 1,
-                          rotate: activeHighlight === index ? 5 : 0
-                        }}
-                        transition={{ duration: timing.fast, ease: appleEasing.spring }}
-                      >
-                        <highlight.icon
-                          className={activeHighlight === index ? "text-[#7FDBFF]" : "text-[#AEEEEE]"}
-                          size={20}
-                        />
-                      </motion.div>
-                      <div>
-                        <h5
-                          className={`font-semibold mb-1 ${
-                            activeHighlight === index ? "text-[#7FDBFF]" : "text-[#AEEEEE]"
-                          }`}
+                      onClick={() => setActiveHighlight(index)}
+                      variants={itemVariants}
+                      whileHover={prefersReducedMotion ? {} : { scale: 1.01 }}
+                      whileTap={prefersReducedMotion ? {} : { scale: 0.99 }}
+                      transition={{ duration: timing.fast, ease: appleEasing.spring }}
+                    >
+                      <div className="flex items-start space-x-5">
+                        <motion.div
+                          className={`p-3 rounded-lg ${activeHighlight === index
+                              ? "bg-gold text-prussian"
+                              : "bg-taupe text-ivory"
+                            }`}
+                          animate={{
+                            scale: activeHighlight === index ? 1.05 : 1,
+                          }}
+                          transition={{ duration: timing.fast, ease: appleEasing.spring }}
                         >
-                          {highlight.title}
-                        </h5>
-                        <p className="text-sm text-[#AEEEEE]/70">{highlight.description}</p>
+                          <highlight.icon size={20} />
+                        </motion.div>
+                        <div className="flex-1">
+                          <h5 className="font-medium mb-2 text-ivory">
+                            {highlight.title}
+                          </h5>
+                          <p className="text-light-grey leading-relaxed">{highlight.description}</p>
+                        </div>
                       </div>
-                    </div>
-                  </motion.div>
-                ))}
+                    </motion.div>
+                  ))}
+                </div>
               </motion.div>
             </motion.div>
           </div>
