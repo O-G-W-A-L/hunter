@@ -16,17 +16,16 @@ import {
 
 const projects = [
   {
-    name: "FlipCraft",
-    description: "A platform for repurposing content using AI, set to be released soon.",
-    link: "#",
-    tags: ["React", "AI", "Content Management", "Web App"],
+    name: "CropPay",
+    description: "Farmers co-own supply chain infrastructure.",
+    link: "https://crop-pay.vercel.app",
+    tags: ["React", "AI", "Farmers", "Web App"],
     category: "Web Application",
-    status: "Development",
-    features: ["Content repurposing", "AI-powered transformation", "Multi-format support", "User-friendly interface"],
-    preview: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&h=300&fit=crop&crop=center",
-    isLive: false,
+    status: "Live",
+    features: ["Supply chain transparency", "Farmer ownership", "Global market access", "Village processing"],
+    preview: "https://crop-pay.vercel.app",
+    isLive: true,
     color: "from-blue-500 to-indigo-500",
-    showReleaseMessage: true
   },
   {
     name: "Trace-It",
@@ -52,6 +51,19 @@ const projects = [
     preview: "https://afraco.vercel.app/",
     isLive: true,
     color: "from-teal-500 to-green-500",
+  },
+  {
+    name: "FlipCraft",
+    description: "A platform for repurposing content using AI, set to be released soon.",
+    link: "#",
+    tags: ["React", "AI", "Content Management", "Web App"],
+    category: "Web Application",
+    status: "Development",
+    features: ["Content repurposing", "AI-powered transformation", "Multi-format support", "User-friendly interface"],
+    preview: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&h=300&fit=crop&crop=center",
+    isLive: false,
+    color: "from-blue-500 to-indigo-500",
+    showReleaseMessage: true
   },
   {
     name: "FreeMind",
@@ -124,82 +136,64 @@ export default function Projects() {
   return (
     <div
       id="projects"
-      className="min-h-screen bg-gradient-to-br from-[#00243f] via-[#002d4f] to-[#00365f] text-[#AEEEEE] py-20 overflow-x-hidden"
+      className="min-h-screen bg-prussian text-ivory section-luxury relative overflow-x-hidden grain"
     >
-      <div className="container mx-auto px-4 sm:px-8">
+      {/* Old Money Editorial Background Pattern */}
+      <div className="absolute inset-0 opacity-[0.02]">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 40% 60%, rgba(212, 175, 55, 0.1) 1px, transparent 1px),
+                           radial-gradient(circle at 60% 40%, rgba(139, 125, 107, 0.1) 1px, transparent 1px)`,
+          backgroundSize: '100px 100px, 80px 80px'
+        }} />
+      </div>
+
+      <div className="container-luxury relative z-10">
         <motion.div
           ref={ref}
-          className="w-full max-w-7xl mx-auto"
+          className="w-full max-w-6xl mx-auto"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
           {/* Header */}
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-20"
             variants={itemVariants}
             transition={{ delay: stagger.tight }}
           >
-            <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] bg-clip-text text-transparent">
+            <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-medium mb-6 text-ivory tracking-tight">
               The Hunter's Projects
             </h2>
-            <p className="text-xl text-[#AEEEEE]/80 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-light-grey max-w-4xl mx-auto leading-relaxed">
               Innovative solutions crafted with passion, precision, and purpose
             </p>
             <motion.div
-              className="w-24 h-1 bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] mx-auto rounded-full mt-6"
+              className="w-32 h-px bg-gradient-to-r from-gold to-warm-gold mx-auto mt-8"
               initial={{ scaleX: 0 }}
               animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
               transition={{ duration: timing.normal, delay: timing.normal, ease: appleEasing.smooth }}
             />
           </motion.div>
 
-          {/* Category Filter - Mobile Optimized */}
+          {/* Category Filter */}
           <motion.div
-            className="mb-12"
+            className="mb-16"
             variants={itemVariants}
             transition={{ delay: stagger.normal }}
           >
-            {/* Mobile: Horizontal Scroll */}
-            <div className="sm:hidden">
-              <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
-                {categories.map((category) => (
-                  <motion.button
-                    key={category.full}
-                    onClick={() => setSelectedCategory(category.full)}
-                    className={`px-4 py-2 rounded-full font-medium text-sm whitespace-nowrap transition-all duration-300 flex-shrink-0 ${
-                      selectedCategory === category.full
-                        ? "bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] text-[#001F3F]"
-                        : "bg-[#001F3F]/50 text-[#AEEEEE] hover:bg-[#7FDBFF]/10 border border-[#7FDBFF]/30"
-                    }`}
-                    whileHover={prefersReducedMotion ? {} : hoverLift}
-                    whileTap={prefersReducedMotion ? {} : pressAnimation}
-                    animate={{
-                      scale: selectedCategory === category.full ? 1.05 : 1
-                    }}
-                    transition={{ duration: timing.fast, ease: appleEasing.spring }}
-                  >
-                    {category.short}
-                  </motion.button>
-                ))}
-              </div>
-            </div>
-
-            {/* Desktop: Flex Layout */}
-            <div className="hidden sm:flex flex-wrap justify-center gap-3">
+            <div className="flex flex-wrap justify-center gap-3 md:gap-4">
               {categories.map((category) => (
                 <motion.button
                   key={category.full}
                   onClick={() => setSelectedCategory(category.full)}
-                  className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                    selectedCategory === category.full
-                      ? "bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] text-[#001F3F]"
-                      : "bg-[#001F3F]/50 text-[#AEEEEE] hover:bg-[#7FDBFF]/10 border border-[#7FDBFF]/30"
-                  }`}
-                  whileHover={prefersReducedMotion ? {} : hoverLift}
-                  whileTap={prefersReducedMotion ? {} : pressAnimation}
+                  className={`px-6 py-4 rounded-2xl font-medium text-sm md:text-base transition-all duration-400 ${selectedCategory === category.full
+                    ? "bg-ivory text-prussian shadow-natural border-2 border-taupe"
+                    : "bg-ivory/10 text-taupe hover:text-ivory hover:bg-ivory shadow-soft border border-transparent"
+                    }`}
+                  whileHover={prefersReducedMotion ? {} : { scale: 1.02, y: -1 }}
+                  whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
                   animate={{
-                    scale: selectedCategory === category.full ? 1.05 : 1
+                    scale: selectedCategory === category.full ? 1.02 : 1
                   }}
                   transition={{ duration: timing.fast, ease: appleEasing.spring }}
                 >
@@ -211,7 +205,7 @@ export default function Projects() {
 
           {/* Projects Grid */}
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-10"
             variants={containerVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
@@ -220,14 +214,14 @@ export default function Projects() {
               <motion.div
                 key={project.name}
                 variants={itemVariants}
-                className="group relative bg-gradient-to-br from-[#001F3F]/80 to-[#00243f]/80 backdrop-blur-xl rounded-3xl overflow-hidden border border-[#7FDBFF]/20 hover:border-[#7FDBFF]/50 transition-all duration-500 hover:shadow-2xl hover:shadow-[#7FDBFF]/10"
-                whileHover={prefersReducedMotion ? {} : hoverLift}
+                className="group bg-navy-soft/30 backdrop-blur-sm border border-ivory/5 rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.2)] hover:border-gold/30 transition-all duration-500"
+                whileHover={prefersReducedMotion ? {} : { scale: 1.02, y: -4 }}
                 transition={{ duration: timing.fast, ease: appleEasing.spring }}
               >
                 {/* Project Preview */}
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-64 overflow-hidden border-b border-ivory/5">
                   {project.isLive ? (
-                    <div className="relative w-full h-full">
+                    <div className="relative w-full h-full bg-taupe/20">
                       <iframe
                         src={project.preview}
                         title={`${project.name} live preview`}
@@ -246,25 +240,21 @@ export default function Projects() {
                     <img
                       src={project.preview || "/placeholder.svg"}
                       alt={`${project.name} preview`}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                   )}
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-t ${project.color} opacity-20 group-hover:opacity-30 transition-opacity duration-300`}
-                  />
 
                   {/* Status Badge */}
-                  <div className="absolute top-4 right-4">
+                  <div className="absolute top-4 right-4 z-10">
                     <span
-                      className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                        project.status === "Live"
-                          ? "bg-green-500/20 text-green-400 border border-green-500/30"
-                          : project.status === "Beta"
-                            ? "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30"
-                            : project.status === "Development"
-                              ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
-                              : "bg-purple-500/20 text-purple-400 border border-purple-500/30"
-                      }`}
+                      className={`px-4 py-1.5 rounded-full text-[10px] uppercase tracking-wider font-bold border backdrop-blur-md shadow-sm ${project.status === "Live"
+                        ? "bg-green-900/40 text-green-300 border-green-500/30"
+                        : project.status === "Beta"
+                          ? "bg-yellow-900/40 text-yellow-300 border-yellow-500/30"
+                          : project.status === "Development"
+                            ? "bg-blue-900/40 text-blue-300 border-blue-500/30"
+                            : "bg-purple-900/40 text-purple-300 border-purple-500/30"
+                        }`}
                     >
                       {project.status}
                     </span>
@@ -272,9 +262,9 @@ export default function Projects() {
 
                   {/* Live Indicator for iframe projects */}
                   {project.isLive && (
-                    <div className="absolute top-4 left-4">
-                      <span className="px-2 py-1 bg-red-500/20 text-red-400 border border-red-500/30 rounded-full text-xs font-semibold flex items-center">
-                        <span className="w-2 h-2 bg-red-400 rounded-full mr-1 animate-pulse"></span>
+                    <div className="absolute top-4 left-4 z-10">
+                      <span className="px-3 py-1 bg-red-900/60 text-red-200 border border-red-500/30 rounded-full text-[10px] font-bold tracking-wider flex items-center backdrop-blur-md">
+                        <span className="w-1.5 h-1.5 bg-red-500 rounded-full mr-2 animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.6)]"></span>
                         LIVE
                       </span>
                     </div>
@@ -282,75 +272,73 @@ export default function Projects() {
 
                   {/* Hover Overlay */}
                   <motion.div
-                    className="absolute inset-0 bg-[#001F3F]/90 flex items-center justify-center"
+                    className="absolute inset-0 bg-prussian/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 backdrop-blur-[2px]"
                     initial={{ opacity: 0 }}
                     whileHover={{ opacity: 1 }}
                     transition={{ duration: timing.fast, ease: appleEasing.smooth }}
                   >
-                    <div className="flex space-x-4">
+                    <div className="flex space-x-6">
                       <motion.button
                         onClick={() => setSelectedProject(project)}
-                        className="p-3 bg-[#7FDBFF]/20 rounded-full hover:bg-[#7FDBFF]/30 transition-colors duration-300"
-                        whileHover={prefersReducedMotion ? {} : { scale: 1.1, rotate: 5 }}
-                        whileTap={prefersReducedMotion ? {} : pressAnimation}
-                        transition={{ duration: timing.fast, ease: appleEasing.spring }}
+                        className="group/btn p-4 border border-ivory/20 rounded-full hover:border-gold hover:bg-gold/10 transition-all duration-300"
+                        whileHover={prefersReducedMotion ? {} : { scale: 1.1 }}
+                        whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
                       >
-                        <Eye className="text-[#7FDBFF]" size={20} />
+                        <Eye className="text-ivory group-hover/btn:text-gold transition-colors duration-300" size={24} />
                       </motion.button>
                       <motion.a
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-3 bg-[#7FDBFF]/20 rounded-full hover:bg-[#7FDBFF]/30 transition-colors duration-300"
-                        whileHover={prefersReducedMotion ? {} : { scale: 1.1, rotate: -5 }}
-                        whileTap={prefersReducedMotion ? {} : pressAnimation}
-                        transition={{ duration: timing.fast, ease: appleEasing.spring }}
+                        className="group/btn p-4 border border-ivory/20 rounded-full hover:border-gold hover:bg-gold/10 transition-all duration-300"
+                        whileHover={prefersReducedMotion ? {} : { scale: 1.1 }}
+                        whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
                         onClick={(e) => {
                           if (project.showReleaseMessage) {
-                            e.preventDefault();
-                            alert("Set to be released soon. Stay tuned!");
+                            e.preventDefault()
+                            alert("Set to be released soon. Stay tuned!")
                           }
                         }}
                       >
-                        <ExternalLink className="text-[#7FDBFF]" size={20} />
+                        <ExternalLink className="text-ivory group-hover/btn:text-gold transition-colors duration-300" size={24} />
                       </motion.a>
                     </div>
                   </motion.div>
                 </div>
 
                 {/* Project Content */}
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-2xl font-bold text-[#7FDBFF]">{project.name}</h3>
-                    <span className="text-sm text-[#AEEEEE]/60">{project.category}</span>
+                <div className="p-8 relative">
+                  <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-ivory/10 to-transparent" />
+
+                  <div className="flex flex-col mb-4">
+                    <span className="text-xs uppercase tracking-[0.15em] text-gold mb-2 font-medium">{project.category}</span>
+                    <h3 className="text-2xl font-serif font-medium text-ivory leading-tight group-hover:text-gold transition-colors duration-300">{project.name}</h3>
                   </div>
 
-                  <p className="text-[#AEEEEE]/80 mb-4">{project.description}</p>
+                  <p className="text-taupe leading-relaxed mb-6 font-light">{project.description}</p>
 
                   {/* Features */}
-                  <div className="mb-4">
-                    <div className="grid grid-cols-2 gap-1 text-xs text-[#AEEEEE]/70">
-                      {project.features.slice(0, 4).map((feature, idx) => (
-                        <div key={idx} className="flex items-center">
-                          <Star size={10} className="text-[#7FDBFF] mr-1" />
-                          {feature}
-                        </div>
-                      ))}
-                    </div>
+                  <div className="mb-6 space-y-3">
+                    {project.features.slice(0, 3).map((feature, idx) => (
+                      <div key={idx} className="flex items-center text-sm text-light-grey/80">
+                        <Star size={12} className="text-gold/70 mr-3 flex-shrink-0" fill="currentColor" />
+                        <span className="tracking-wide">{feature}</span>
+                      </div>
+                    ))}
                   </div>
 
                   {/* Tags */}
-                  <div className="flex flex-wrap gap-2 mb-4">
+                  <div className="flex flex-wrap gap-2 mb-8">
                     {project.tags.slice(0, 3).map((tag, tagIndex) => (
                       <span
                         key={tagIndex}
-                        className="bg-[#0A4D68]/60 text-[#7FDBFF] text-xs px-3 py-1 rounded-full border border-[#7FDBFF]/30"
+                        className="text-[10px] uppercase tracking-wider text-taupe px-3 py-1 border border-taupe/20 rounded-full"
                       >
                         {tag}
                       </span>
                     ))}
                     {project.tags.length > 3 && (
-                      <span className="text-xs text-[#AEEEEE]/60 px-2 py-1">+{project.tags.length - 3}</span>
+                      <span className="text-[10px] text-taupe/50 px-2 py-1">+{project.tags.length - 3}</span>
                     )}
                   </div>
 
@@ -359,19 +347,21 @@ export default function Projects() {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] text-[#001F3F] px-4 py-3 rounded-full font-semibold text-center hover:shadow-lg transition-all duration-300 flex items-center justify-center"
-                    whileHover={prefersReducedMotion ? {} : hoverLift}
-                    whileTap={prefersReducedMotion ? {} : pressAnimation}
-                    transition={{ duration: timing.fast, ease: appleEasing.spring }}
+                    className="w-full group/btn relative bg-ivory text-prussian border border-ivory px-6 py-4 rounded-xl overflow-hidden transition-all duration-500 hover:shadow-[0_0_20px_rgba(245,243,239,0.2)] block text-center"
+                    whileHover={prefersReducedMotion ? {} : { scale: 1.02 }}
+                    whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
                     onClick={(e) => {
                       if (project.showReleaseMessage) {
-                        e.preventDefault();
-                        alert("Set to be released soon. Stay tuned!");
+                        e.preventDefault()
+                        alert("Set to be released soon. Stay tuned!")
                       }
                     }}
                   >
-                    Dive In
-                    <ExternalLink size={16} className="ml-2" />
+                    <span className="relative z-10 font-serif tracking-[0.1em] uppercase text-xs font-bold flex items-center justify-center gap-2">
+                      View Project
+                      <ExternalLink size={14} className="group-hover/btn:translate-x-1 transition-transform duration-300" />
+                    </span>
+                    <div className="absolute inset-0 bg-gold opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500 ease-out" />
                   </motion.a>
                 </div>
               </motion.div>
@@ -382,39 +372,41 @@ export default function Projects() {
           <AnimatePresence>
             {selectedProject && (
               <motion.div
-                className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+                className="fixed inset-0 bg-prussian/90 backdrop-blur-md z-50 flex items-center justify-center p-6"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setSelectedProject(null)}
               >
                 <motion.div
-                  className="bg-gradient-to-br from-[#001F3F] to-[#00243f] rounded-3xl max-w-2xl w-full max-h-[80vh] overflow-y-auto border border-[#7FDBFF]/30"
-                  initial={{ scale: 0.8, opacity: 0 }}
+                  className="bg-navy-soft border border-ivory/10 rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
+                  initial={{ scale: 0.9, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.8, opacity: 0 }}
+                  exit={{ scale: 0.9, opacity: 0 }}
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <div className="p-6">
-                    <div className="flex justify-between items-start mb-4">
+                  <div className="p-8 md:p-10">
+                    <div className="flex justify-between items-start mb-6">
                       <div>
-                        <h3 className="text-2xl font-bold text-[#7FDBFF] mb-2">{selectedProject.name}</h3>
-                        <p className="text-[#AEEEEE]/70">{selectedProject.category}</p>
+                        <span className="text-gold text-xs uppercase tracking-[0.2em] font-medium mb-2 block">{selectedProject.category}</span>
+                        <h3 className="text-3xl md:text-4xl font-serif font-medium text-ivory mb-2">{selectedProject.name}</h3>
                       </div>
                       <button
                         onClick={() => setSelectedProject(null)}
-                        className="text-[#AEEEEE] hover:text-[#7FDBFF] transition-colors duration-300"
+                        className="text-taupe hover:text-ivory transition-colors duration-300 p-2"
                       >
-                        ✕
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
                       </button>
                     </div>
 
                     {selectedProject.isLive ? (
-                      <div className="relative w-full h-64 mb-4">
+                      <div className="relative w-full h-80 mb-8 bg-black/20 rounded-2xl overflow-hidden border border-ivory/5">
                         <iframe
                           src={selectedProject.preview}
                           title={`${selectedProject.name} live preview`}
-                          className="w-full h-full border-0 rounded-2xl"
+                          className="w-full h-full border-0"
                           loading="lazy"
                         />
                       </div>
@@ -422,50 +414,55 @@ export default function Projects() {
                       <img
                         src={selectedProject.preview || "/placeholder.svg"}
                         alt={`${selectedProject.name} preview`}
-                        className="w-full h-48 object-cover rounded-2xl mb-4"
+                        className="w-full h-80 object-cover rounded-2xl mb-8 border border-ivory/5"
                       />
                     )}
 
-                    <p className="text-[#AEEEEE]/80 mb-4">{selectedProject.description}</p>
+                    <p className="text-light-grey mb-8 leading-relaxed text-lg font-light">{selectedProject.description}</p>
 
-                    <div className="mb-4">
-                      <h4 className="text-lg font-semibold text-[#7FDBFF] mb-2">Features</h4>
-                      <div className="grid grid-cols-2 gap-2">
+                    <div className="mb-8">
+                      <h4 className="text-xl font-serif font-medium text-ivory mb-4">Key Features</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         {selectedProject.features.map((feature, idx) => (
-                          <div key={idx} className="flex items-center text-sm">
-                            <Star className="text-[#7FDBFF] mr-2" size={12} />
+                          <div key={idx} className="flex items-center text-taupe">
+                            <Star className="text-gold mr-3 flex-shrink-0" size={16} fill="currentColor" />
                             {feature}
                           </div>
                         ))}
                       </div>
                     </div>
 
-                    <div className="mb-6">
-                      <h4 className="text-lg font-semibold text-[#7FDBFF] mb-2">Technologies</h4>
-                      <div className="flex flex-wrap gap-2">
+                    <div className="mb-10">
+                      <h4 className="text-xl font-serif font-medium text-ivory mb-4">Technologies Used</h4>
+                      <div className="flex flex-wrap gap-3">
                         {selectedProject.tags.map((tag, idx) => (
-                          <span key={idx} className="bg-[#0A4D68]/60 text-[#7FDBFF] px-3 py-1 rounded-full text-sm">
+                          <span key={idx} className="bg-ivory/5 text-ivory px-4 py-2 rounded-full text-xs font-medium border border-ivory/10 tracking-wider">
                             {tag}
                           </span>
                         ))}
                       </div>
                     </div>
 
-                    <a
+                    <motion.a
                       href={selectedProject.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] text-[#001F3F] px-6 py-3 rounded-full font-bold text-center hover:shadow-lg transition-all duration-300 flex items-center justify-center"
+                      className="w-full group relative bg-ivory text-prussian border border-ivory px-8 py-5 rounded-xl overflow-hidden transition-all duration-500 hover:shadow-[0_0_30px_rgba(245,243,239,0.3)] block"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                       onClick={(e) => {
                         if (selectedProject.showReleaseMessage) {
-                          e.preventDefault();
-                          alert("Set to be released soon. Stay tuned!");
+                          e.preventDefault()
+                          alert("Set to be released soon. Stay tuned!")
                         }
                       }}
                     >
-                      <ExternalLink className="mr-2" size={20} />
-                      Visit Project
-                    </a>
+                      <span className="relative z-10 font-serif tracking-[0.1em] uppercase text-sm font-bold flex items-center justify-center gap-2">
+                        Visit Project
+                        <ExternalLink className="ml-2 group-hover:translate-x-1 transition-transform duration-300" size={20} />
+                      </span>
+                      <div className="absolute inset-0 bg-gold opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out" />
+                    </motion.a>
                   </div>
                 </motion.div>
               </motion.div>

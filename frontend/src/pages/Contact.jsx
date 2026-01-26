@@ -5,10 +5,15 @@ import { motion, useInView } from "framer-motion"
 import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp, FaTelegram } from "react-icons/fa"
 import { SiX } from "react-icons/si"
 import { Send, MapPin, Phone, Mail, MessageCircle } from "lucide-react"
+import {
+  appleEasing,
+  timing,
+  prefersReducedMotion
+} from "../utils/animations"
 
 const contacts = [
   {
-    href: "mailto:huntertest02@gmail.com",
+    href: "mailto:hunterswe01@gmail.com",
     icon: FaEnvelope,
     label: "Email",
     description: "Drop me a line",
@@ -79,7 +84,7 @@ export default function Contact() {
     await new Promise((resolve) => setTimeout(resolve, 2000))
 
     // Create mailto link
-    const mailtoLink = `mailto:huntertest02@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`
+    const mailtoLink = `mailto:hunterswe01@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`
     window.location.href = mailtoLink
 
     setIsSubmitting(false)
@@ -89,160 +94,177 @@ export default function Contact() {
   return (
     <div
       id="contact"
-      className="min-h-screen bg-gradient-to-br from-[#00243f] via-[#002d4f] to-[#00365f] text-[#AEEEEE] py-20"
+      className="min-h-screen bg-prussian text-ivory section-luxury relative overflow-x-hidden grain"
     >
-      <div className="container mx-auto px-4 sm:px-8">
+      {/* Old Money Editorial Background Pattern */}
+      <div className="absolute inset-0 opacity-[0.02]">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 50% 30%, rgba(212, 175, 55, 0.1) 1px, transparent 1px),
+                           radial-gradient(circle at 20% 80%, rgba(139, 125, 107, 0.1) 1px, transparent 1px)`,
+          backgroundSize: '90px 90px, 70px 70px'
+        }} />
+      </div>
+
+      <div className="container-luxury relative z-10">
         <motion.div
           ref={ref}
-          className="max-w-7xl mx-auto"
+          className="max-w-6xl mx-auto"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.8 }}
         >
           {/* Header */}
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-20"
             initial={{ opacity: 0, y: 50 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] bg-clip-text text-transparent">
-              Let's Connect!
+            <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-medium mb-6 text-ivory tracking-tight">
+              Let's Connect
             </h2>
-            <p className="text-xl text-[#AEEEEE]/80 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-light-grey max-w-4xl mx-auto leading-relaxed">
               Ready to bring your ideas to life? I'm just a message away. Let's discuss how we can work together to
               create something extraordinary.
             </p>
-            <div className="w-24 h-1 bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] mx-auto rounded-full mt-6"></div>
+            <motion.div
+              className="w-32 h-px bg-gradient-to-r from-gold to-warm-gold mx-auto mt-8"
+              initial={{ scaleX: 0 }}
+              animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
+              transition={{ duration: timing.normal, delay: timing.normal, ease: appleEasing.smooth }}
+            />
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-16">
+          <div className="grid lg:grid-cols-2 gap-20">
+            {/* Contact Form */}
             {/* Contact Form */}
             <motion.div
-              className="bg-gradient-to-br from-[#00243f]/80 to-[#002d4f]/80 backdrop-blur-xl rounded-3xl p-8 border border-[#7FDBFF]/20"
+              className="bg-navy-soft/30 backdrop-blur-sm border border-ivory/5 rounded-3xl p-10 md:p-12 shadow-[0_0_50px_rgba(0,0,0,0.2)]"
               initial={{ opacity: 0, x: -50 }}
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <div className="mb-8">
-                <h3 className="text-3xl font-bold text-[#7FDBFF] mb-4">Send a Message</h3>
-                <p className="text-[#AEEEEE]/70">
+              <div className="mb-10">
+                <h3 className="text-3xl md:text-4xl font-serif font-medium text-ivory mb-4 tracking-tight">Send a Message</h3>
+                <p className="text-light-grey/80 leading-relaxed font-light tracking-wide">
                   Have a project in mind? Let's discuss the details and make it happen.
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-[#AEEEEE] mb-2">Your Name</label>
+              <form onSubmit={handleSubmit} className="space-y-8">
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div className="group">
+                    <label className="block text-xs uppercase tracking-[0.15em] font-medium text-taupe mb-3 ml-1 group-focus-within:text-gold transition-colors duration-300">Your Name</label>
                     <input
                       type="text"
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 bg-[#00243f]/50 border border-[#7FDBFF]/30 rounded-xl text-[#AEEEEE] placeholder-[#AEEEEE]/50 focus:border-[#7FDBFF] focus:outline-none transition-colors duration-300"
-                      placeholder="Name"
+                      className="w-full px-0 py-4 bg-transparent border-b border-taupe/30 text-ivory placeholder-taupe/30 focus:border-gold focus:outline-none transition-all duration-300 font-serif text-lg"
+                      placeholder="John Doe"
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-[#AEEEEE] mb-2">Email Address</label>
+                  <div className="group">
+                    <label className="block text-xs uppercase tracking-[0.15em] font-medium text-taupe mb-3 ml-1 group-focus-within:text-gold transition-colors duration-300">Email Address</label>
                     <input
                       type="email"
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 bg-[#00243f]/50 border border-[#7FDBFF]/30 rounded-xl text-[#AEEEEE] placeholder-[#AEEEEE]/50 focus:border-[#7FDBFF] focus:outline-none transition-colors duration-300"
-                      placeholder="name@example.com"
+                      className="w-full px-0 py-4 bg-transparent border-b border-taupe/30 text-ivory placeholder-taupe/30 focus:border-gold focus:outline-none transition-all duration-300 font-serif text-lg"
+                      placeholder="john@example.com"
                     />
                   </div>
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-[#AEEEEE] mb-2">Subject</label>
+                <div className="group">
+                  <label className="block text-xs uppercase tracking-[0.15em] font-medium text-taupe mb-3 ml-1 group-focus-within:text-gold transition-colors duration-300">Subject</label>
                   <input
                     type="text"
                     name="subject"
                     value={formData.subject}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 bg-[#00243f]/50 border border-[#7FDBFF]/30 rounded-xl text-[#AEEEEE] placeholder-[#AEEEEE]/50 focus:border-[#7FDBFF] focus:outline-none transition-colors duration-300"
+                    className="w-full px-0 py-4 bg-transparent border-b border-taupe/30 text-ivory placeholder-taupe/30 focus:border-gold focus:outline-none transition-all duration-300 font-serif text-lg"
                     placeholder="Project Discussion"
                   />
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-[#AEEEEE] mb-2">Message</label>
+                <div className="group">
+                  <label className="block text-xs uppercase tracking-[0.15em] font-medium text-taupe mb-3 ml-1 group-focus-within:text-gold transition-colors duration-300">Message</label>
                   <textarea
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
                     required
-                    rows={6}
-                    className="w-full px-4 py-3 bg-[#00243f]/50 border border-[#7FDBFF]/30 rounded-xl text-[#AEEEEE] placeholder-[#AEEEEE]/50 focus:border-[#7FDBFF] focus:outline-none transition-colors duration-300 resize-none"
-                    placeholder="Tell me about your project..."
+                    rows={4}
+                    className="w-full px-0 py-4 bg-transparent border-b border-taupe/30 text-ivory placeholder-taupe/30 focus:border-gold focus:outline-none transition-all duration-300 resize-none font-serif text-lg"
+                    placeholder="Tell me about your vision..."
                   />
                 </div>
 
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-[#7FDBFF] to-[#AEEEEE] text-[#00243f] px-8 py-4 rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-[#7FDBFF]/20 transition-all duration-300 disabled:opacity-50 flex items-center justify-center"
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
+                  className="w-full group relative bg-ivory text-prussian border border-ivory px-8 py-5 rounded-full overflow-hidden transition-all duration-500 hover:shadow-[0_0_30px_rgba(245,243,239,0.3)]"
+                  whileHover={prefersReducedMotion ? {} : { scale: 1.02 }}
+                  whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
                 >
-                  {isSubmitting ? (
-                    <div className="flex items-center">
-                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-[#00243f] mr-2"></div>
-                      Sending...
-                    </div>
-                  ) : (
-                    <div className="flex items-center">
-                      <Send className="mr-2" size={20} />
-                      Send Message
-                    </div>
-                  )}
+                  <span className="relative z-10 font-serif tracking-[0.15em] uppercase text-sm font-semibold flex items-center justify-center gap-3">
+                    {isSubmitting ? (
+                      <>
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-prussian"></div>
+                        Processing...
+                      </>
+                    ) : (
+                      <>
+                        Send Message
+                      </>
+                    )}
+                  </span>
+                  <div className="absolute inset-0 bg-gold opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out" />
                 </motion.button>
               </form>
             </motion.div>
 
             {/* Contact Info & Social Links */}
             <motion.div
-              className="space-y-8"
+              className="space-y-10"
               initial={{ opacity: 0, x: 50 }}
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               {/* Contact Info */}
-              <div className="bg-gradient-to-br from-[#00243f]/80 to-[#002d4f]/80 backdrop-blur-xl rounded-3xl p-8 border border-[#7FDBFF]/20">
-                <h3 className="text-2xl font-bold text-[#7FDBFF] mb-6">Get In Touch</h3>
-                <div className="space-y-4">
-                  <div className="flex items-center">
-                    <div className="p-3 bg-[#7FDBFF]/10 rounded-full mr-4">
-                      <Mail className="text-[#7FDBFF]" size={20} />
+              <div className="bg-navy-soft/30 backdrop-blur-sm border border-ivory/5 rounded-3xl p-8 md:p-10 shadow-[0_0_50px_rgba(0,0,0,0.2)]">
+                <h3 className="text-2xl md:text-3xl font-serif font-medium text-ivory mb-8 tracking-tight">Direct Lines</h3>
+                <div className="space-y-8">
+                  <div className="flex items-start group">
+                    <div className="p-3 bg-taupe/10 rounded-full mr-6 group-hover:bg-gold/20 transition-colors duration-300">
+                      <Mail className="text-taupe group-hover:text-gold transition-colors duration-300" size={20} />
                     </div>
                     <div>
-                      <p className="text-[#AEEEEE] font-medium">Email</p>
-                      <p className="text-[#AEEEEE]/70">huntertest02@gmail.com</p>
+                      <p className="text-xs uppercase tracking-[0.1em] text-taupe mb-1">Email</p>
+                      <p className="text-ivory font-serif text-lg">hunterswe01@gmail.com</p>
                     </div>
                   </div>
-                  <div className="flex items-center">
-                    <div className="p-3 bg-[#7FDBFF]/10 rounded-full mr-4">
-                      <Phone className="text-[#7FDBFF]" size={20} />
+                  <div className="flex items-center group">
+                    <div className="p-3 bg-taupe/10 rounded-full mr-6 group-hover:bg-gold/20 transition-colors duration-300">
+                      <Phone className="text-taupe group-hover:text-gold transition-colors duration-300" size={20} />
                     </div>
                     <div>
-                      <p className="text-[#AEEEEE] font-medium">Phone</p>
-                      <p className="text-[#AEEEEE]/70">+256 774 114 216</p>
+                      <p className="text-xs uppercase tracking-[0.1em] text-taupe mb-1">Phone</p>
+                      <p className="text-ivory font-serif text-lg">+256 774 114 216</p>
                     </div>
                   </div>
-                  <div className="flex items-center">
-                    <div className="p-3 bg-[#7FDBFF]/10 rounded-full mr-4">
-                      <MapPin className="text-[#7FDBFF]" size={20} />
+                  <div className="flex items-center group">
+                    <div className="p-3 bg-taupe/10 rounded-full mr-6 group-hover:bg-gold/20 transition-colors duration-300">
+                      <MapPin className="text-taupe group-hover:text-gold transition-colors duration-300" size={20} />
                     </div>
                     <div>
-                      <p className="text-[#AEEEEE] font-medium">Location</p>
-                      <p className="text-[#AEEEEE]/70">Uganda, East Africa</p>
+                      <p className="text-xs uppercase tracking-[0.1em] text-taupe mb-1">Location</p>
+                      <p className="text-ivory font-serif text-lg">Uganda, East Africa</p>
                     </div>
                   </div>
                 </div>
@@ -250,7 +272,7 @@ export default function Contact() {
 
               {/* Social Links */}
               <div>
-                <h3 className="text-2xl font-bold text-[#7FDBFF] mb-6">Connect on Social</h3>
+                <h3 className="text-2xl md:text-3xl font-serif font-medium text-ivory mb-8 tracking-tight">Connect</h3>
                 <div className="grid grid-cols-2 gap-4">
                   {contacts.map((contact, index) => (
                     <motion.a
@@ -258,32 +280,22 @@ export default function Contact() {
                       href={contact.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group relative bg-gradient-to-br from-[#00243f]/80 to-[#002d4f]/80 backdrop-blur-xl rounded-2xl p-6 border border-[#7FDBFF]/20 hover:border-[#7FDBFF]/50 transition-all duration-300"
-                      onHoverStart={() => setHoveredContact(index)}
-                      onHoverEnd={() => setHoveredContact(null)}
-                      whileHover={{ scale: 1.05, y: -5 }}
+                      className="group bg-navy-soft/30 backdrop-blur-sm border border-ivory/5 rounded-2xl p-6 hover:border-gold/30 transition-all duration-400"
+                      whileHover={prefersReducedMotion ? {} : { scale: 1.02, y: -2 }}
                       initial={{ opacity: 0, y: 20 }}
                       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                       transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
                     >
-                      <div className="flex flex-col items-center text-center">
-                        <div className={`p-4 rounded-2xl mb-4 bg-gradient-to-r ${contact.color} bg-opacity-20`}>
-                          <contact.icon className="text-3xl text-white group-hover:text-[#7FDBFF] transition-colors duration-300" />
+                      <div className="flex items-center gap-4">
+                        <div className="text-taupe group-hover:text-gold transition-colors duration-300">
+                          <contact.icon className="text-xl" />
                         </div>
-                        <h4 className="font-semibold text-[#AEEEEE] group-hover:text-[#7FDBFF] transition-colors duration-300 mb-1">
-                          {contact.label}
-                        </h4>
-                        <p className="text-sm text-[#AEEEEE]/60 group-hover:text-[#AEEEEE]/80 transition-colors duration-300">
-                          {contact.description}
-                        </p>
+                        <div>
+                          <h4 className="font-serif text-ivory text-lg">
+                            {contact.label}
+                          </h4>
+                        </div>
                       </div>
-
-                      {/* Hover Effect */}
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-br from-[#7FDBFF]/5 to-[#AEEEEE]/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                        initial={{ scale: 0.8 }}
-                        whileHover={{ scale: 1 }}
-                      />
                     </motion.a>
                   ))}
                 </div>
@@ -291,22 +303,22 @@ export default function Contact() {
 
               {/* Call to Action */}
               <motion.div
-                className="bg-gradient-to-r from-[#7FDBFF]/10 to-[#AEEEEE]/10 rounded-2xl p-6 border border-[#7FDBFF]/30"
+                className="bg-navy-soft rounded-3xl p-8 shadow-natural hover:shadow-natural-lg transition-all duration-400"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.8, delay: 1.2 }}
               >
-                <div className="flex items-center mb-4">
-                  <MessageCircle className="text-[#7FDBFF] mr-3" size={24} />
-                  <h4 className="text-xl font-bold text-[#7FDBFF]">Ready to Start?</h4>
+                <div className="flex items-center mb-6">
+                  <MessageCircle className="text-taupe mr-4" size={24} />
+                  <h4 className="text-xl md:text-2xl font-serif font-medium text-ivory">Ready to Start?</h4>
                 </div>
-                <p className="text-[#AEEEEE]/80 mb-4">
+                <p className="text-light-grey mb-6 leading-relaxed">
                   Whether you have a clear vision or just an idea, I'm here to help bring it to life. Let's discuss your
                   project and explore the possibilities together.
                 </p>
-                <div className="flex space-x-3">
-                  <span className="px-3 py-1 bg-[#7FDBFF]/20 text-[#7FDBFF] rounded-full text-sm">Quick Response</span>
-                  <span className="px-3 py-1 bg-[#AEEEEE]/20 text-[#AEEEEE] rounded-full text-sm">
+                <div className="flex flex-wrap gap-3">
+                  <span className="px-4 py-2 bg-gold text-prussian rounded-full text-sm font-medium">Quick Response</span>
+                  <span className="px-4 py-2 bg-taupe/20 text-taupe rounded-full text-sm font-medium">
                     Free Consultation
                   </span>
                 </div>
