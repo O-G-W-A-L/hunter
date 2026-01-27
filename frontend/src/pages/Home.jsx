@@ -34,10 +34,10 @@ export default function Home() {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 flex flex-col justify-center items-center min-h-screen container-luxury">
+      <div className="relative z-10 flex flex-col justify-center items-center min-h-screen container-luxury w-full max-w-[95vw] lg:max-w-7xl xl:max-w-[90rem]">
         {/* Hero Section */}
         <motion.div
-          className="text-center w-full max-w-5xl mx-auto"
+          className="text-center w-full mx-auto"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -82,35 +82,41 @@ export default function Home() {
             <motion.h2 className="text-xl md:text-2xl font-light mb-8 text-taupe tracking-wide">
               My name is
             </motion.h2>
-            <motion.div key={key} className="relative">
+            <motion.div key={key} className="relative px-4">
               <motion.h1
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-medium text-ivory whitespace-nowrap leading-none"
+                className="flex flex-wrap justify-center gap-x-4 md:gap-x-8 gap-y-2 font-serif font-medium text-ivory leading-none"
+                style={{ fontSize: "clamp(2.5rem, 5vw + 1rem, 7rem)" }}
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: timing.slower, ease: appleEasing.smooth }}
               >
-                {Array.from("OGWAL JONATHAN AMOS").map((char, index) => (
-                  <motion.span
-                    key={`${key}-${index}`}
-                    className="inline-block"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      duration: timing.normal,
-                      delay: index * stagger.tight,
-                      ease: appleEasing.smooth,
-                    }}
-                    whileHover={prefersReducedMotion ? {} : {
-                      scale: 1.02,
-                      transition: { duration: timing.fast, ease: appleEasing.spring }
-                    }}
-                  >
-                    {char === " " ? "\u00A0" : char}
-                  </motion.span>
+                {["OGWAL", "JONATHAN", "AMOS"].map((word, wordIndex) => (
+                  <span key={`word-${wordIndex}`} className="whitespace-nowrap inline-block">
+                    {Array.from(word).map((char, charIndex) => (
+                      <motion.span
+                        key={`${key}-${wordIndex}-${charIndex}`}
+                        className="inline-block"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          duration: timing.normal,
+                          delay: (wordIndex * 5 + charIndex) * stagger.tight,
+                          ease: appleEasing.smooth,
+                        }}
+                        whileHover={prefersReducedMotion ? {} : {
+                          scale: 1.05,
+                          color: '#D4AF37', // Gold color on hover
+                          transition: { duration: timing.fast, ease: appleEasing.spring }
+                        }}
+                      >
+                        {char}
+                      </motion.span>
+                    ))}
+                  </span>
                 ))}
               </motion.h1>
               <motion.p
-                className="text-lg md:text-xl lg:text-2xl text-taupe font-medium mt-6 tracking-wider"
+                className="text-lg md:text-xl lg:text-2xl text-taupe font-medium mt-8 tracking-[0.2em] uppercase"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: timing.slower, duration: timing.normal, ease: appleEasing.smooth }}
@@ -163,20 +169,7 @@ export default function Home() {
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        className="absolute bottom-12 left-1/2 transform -translate-x-1/2"
-        animate={prefersReducedMotion ? {} : { y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: appleEasing.smooth }}
-      >
-        <div className="w-6 h-10 border-2 border-slate-400 rounded-full flex justify-center">
-          <motion.div
-            className="w-1 h-3 bg-slate-400 rounded-full mt-2"
-            animate={prefersReducedMotion ? {} : { y: [0, 12, 0] }}
-            transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: appleEasing.smooth }}
-          />
-        </div>
-      </motion.div>
+
     </div >
   )
 }
