@@ -105,7 +105,7 @@ export default function Contact() {
         }} />
       </div>
 
-      <div className="container-luxury relative z-10">
+      <div className="container-luxury relative z-10 w-full max-w-[95vw] lg:max-w-7xl xl:max-w-[90rem]">
         <motion.div
           ref={ref}
           className="max-w-6xl mx-auto"
@@ -115,31 +115,31 @@ export default function Contact() {
         >
           {/* Header */}
           <motion.div
-            className="text-center mb-20"
+            className="text-center mb-12 md:mb-20"
             initial={{ opacity: 0, y: 50 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-medium mb-6 text-ivory tracking-tight">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-serif font-medium mb-6 text-ivory tracking-tight leading-tight">
               Let's Connect
             </h2>
-            <p className="text-xl md:text-2xl text-light-grey max-w-4xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl lg:text-2xl text-light-grey max-w-4xl mx-auto leading-relaxed px-4">
               Ready to bring your ideas to life? I'm just a message away. Let's discuss how we can work together to
               create something extraordinary.
             </p>
             <motion.div
-              className="w-32 h-px bg-gradient-to-r from-gold to-warm-gold mx-auto mt-8"
+              className="w-24 md:w-32 h-px bg-gradient-to-r from-gold to-warm-gold mx-auto mt-8"
               initial={{ scaleX: 0 }}
               animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
               transition={{ duration: timing.normal, delay: timing.normal, ease: appleEasing.smooth }}
             />
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-20">
+          <div className="grid lg:grid-cols-2 gap-10 md:gap-20">
             {/* Contact Form */}
             {/* Contact Form */}
             <motion.div
-              className="bg-navy-soft/30 backdrop-blur-sm border border-ivory/5 rounded-3xl p-10 md:p-12 shadow-[0_0_50px_rgba(0,0,0,0.2)]"
+              className="bg-navy-soft/30 backdrop-blur-sm border border-ivory/5 rounded-2xl md:rounded-3xl p-6 md:p-10 lg:p-12 shadow-[0_0_50px_rgba(0,0,0,0.2)]"
               initial={{ opacity: 0, x: -50 }}
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -237,7 +237,8 @@ export default function Contact() {
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               {/* Contact Info */}
-              <div className="bg-navy-soft/30 backdrop-blur-sm border border-ivory/5 rounded-3xl p-8 md:p-10 shadow-[0_0_50px_rgba(0,0,0,0.2)]">
+              {/* Contact Info */}
+              <div className="bg-navy-soft/30 backdrop-blur-sm border border-ivory/5 rounded-2xl md:rounded-3xl p-6 md:p-10 shadow-[0_0_50px_rgba(0,0,0,0.2)]">
                 <h3 className="text-2xl md:text-3xl font-serif font-medium text-ivory mb-8 tracking-tight">Direct Lines</h3>
                 <div className="space-y-8">
                   <div className="flex items-start group">
@@ -280,7 +281,7 @@ export default function Contact() {
                       href={contact.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group bg-navy-soft/30 backdrop-blur-sm border border-ivory/5 rounded-2xl p-6 hover:border-gold/30 transition-all duration-400"
+                      className="group bg-navy-soft/30 backdrop-blur-sm border border-ivory/5 rounded-xl md:rounded-2xl p-4 md:p-6 hover:border-gold/30 transition-all duration-400"
                       whileHover={prefersReducedMotion ? {} : { scale: 1.02, y: -2 }}
                       initial={{ opacity: 0, y: 20 }}
                       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
