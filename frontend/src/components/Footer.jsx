@@ -55,7 +55,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <motion.div
-            className="flex flex-wrap justify-center gap-x-12 gap-y-6 mb-16"
+            className="flex flex-wrap justify-center gap-x-6 gap-y-4 md:gap-x-12 md:gap-y-6 mb-12 md:mb-16"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -64,7 +64,7 @@ export default function Footer() {
               <button
                 key={link}
                 onClick={() => scrollToSection(link)}
-                className="text-xs uppercase tracking-[0.2em] text-ivory/60 hover:text-gold transition-colors duration-500 font-medium"
+                className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-ivory/60 hover:text-gold transition-colors duration-500 font-medium"
               >
                 {link}
               </button>
@@ -73,7 +73,7 @@ export default function Footer() {
 
           {/* Social Links */}
           <motion.div
-            className="flex justify-center gap-8 mb-20"
+            className="flex justify-center gap-5 md:gap-8 mb-16 md:mb-20"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.6 }}
@@ -84,13 +84,13 @@ export default function Footer() {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative p-4 rounded-full border border-ivory/10 hover:border-gold/50 transition-all duration-500 bg-white/5 backdrop-blur-sm"
+                className="group relative p-3 md:p-4 rounded-full border border-ivory/10 hover:border-gold/50 transition-all duration-500 bg-white/5 backdrop-blur-sm"
                 whileHover={{ scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 aria-label={label}
               >
                 <div className="absolute inset-0 bg-gold/10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <Icon className="text-ivory group-hover:text-gold transition-colors duration-500 relative z-10" size={20} />
+                <Icon className="text-ivory group-hover:text-gold transition-colors duration-500 relative z-10" size={18} />
               </motion.a>
             ))}
           </motion.div>

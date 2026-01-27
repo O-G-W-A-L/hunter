@@ -279,18 +279,18 @@ export default function Contact() {
                       href={contact.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group bg-navy-soft/30 backdrop-blur-sm border border-ivory/5 rounded-xl md:rounded-2xl p-4 md:p-6 hover:border-gold/30 transition-all duration-400"
+                      className="group bg-navy-soft/30 backdrop-blur-sm border border-ivory/5 rounded-xl md:rounded-2xl p-3 md:p-6 hover:border-gold/30 transition-all duration-400"
                       whileHover={prefersReducedMotion ? {} : { scale: 1.02, y: -2 }}
                       initial={{ opacity: 0, y: 20 }}
                       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                       transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
                     >
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-3 md:gap-4">
                         <div className="text-taupe group-hover:text-gold transition-colors duration-300">
-                          <contact.icon className="text-xl" />
+                          <contact.icon className="text-lg md:text-xl" />
                         </div>
                         <div>
-                          <h4 className="font-serif text-ivory text-lg">
+                          <h4 className="font-serif text-ivory text-sm md:text-lg tracking-wide">
                             {contact.label}
                           </h4>
                         </div>
