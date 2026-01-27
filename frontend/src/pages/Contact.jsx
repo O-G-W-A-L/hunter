@@ -36,7 +36,7 @@ const contacts = [
   {
     href: "https://x.com/Ogwal_Jonathan",
     icon: SiX,
-    label: "X (Twitter)",
+    label: "X",
     description: "Follow my journey",
     color: "from-gray-800 to-black",
   },
@@ -161,7 +161,7 @@ export default function Contact() {
                       onChange={handleInputChange}
                       required
                       className="w-full px-0 py-4 bg-transparent border-b border-taupe/30 text-ivory placeholder-taupe/30 focus:border-gold focus:outline-none transition-all duration-300 font-serif text-lg"
-                      placeholder="John Doe"
+                      placeholder="hunter"
                     />
                   </div>
                   <div className="group">
@@ -173,7 +173,7 @@ export default function Contact() {
                       onChange={handleInputChange}
                       required
                       className="w-full px-0 py-4 bg-transparent border-b border-taupe/30 text-ivory placeholder-taupe/30 focus:border-gold focus:outline-none transition-all duration-300 font-serif text-lg"
-                      placeholder="john@example.com"
+                      placeholder="hunter@example.com"
                     />
                   </div>
                 </div>
