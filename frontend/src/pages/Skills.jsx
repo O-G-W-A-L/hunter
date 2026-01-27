@@ -2,7 +2,7 @@
 
 import React, { useState } from "react"
 import { motion, useInView } from "framer-motion"
-import { Star, TrendingUp } from "lucide-react"
+import { Star, TrendingUp, PenTool } from "lucide-react"
 import {
   appleEasing,
   timing,
@@ -29,11 +29,11 @@ const skillCategories = [
       {
         name: "JavaScript",
         level: 85,
-        image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+        image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
         experience: "3+ years",
       },
       {
-        name: "HTML/CSS",
+        name: "HTML5",
         level: 95,
         image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
         experience: "5+ years",
@@ -41,7 +41,7 @@ const skillCategories = [
       {
         name: "Tailwind CSS",
         level: 88,
-        image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg",
+        image: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg",
         experience: "2+ years",
       },
     ],
@@ -61,6 +61,7 @@ const skillCategories = [
         name: "Express.js",
         level: 80,
         image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+        invert: true,
         experience: "2+ years",
       },
       {
@@ -72,7 +73,8 @@ const skillCategories = [
       {
         name: "RESTful APIs",
         level: 88,
-        image: "https://img.icons8.com/color/48/api-settings.png",
+        image: "https://www.svgrepo.com/show/375531/api.svg",
+        invert: true,
         experience: "2+ years",
       },
     ],
@@ -114,9 +116,9 @@ const skillCategories = [
     icon: "🛠️",
     skills: [
       {
-        name: "Git & GitHub",
+        name: "Git",
         level: 90,
-        image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+        image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
         experience: "5+ years",
       },
       {
@@ -126,15 +128,15 @@ const skillCategories = [
         experience: "3+ years",
       },
       {
-        name: "Chrome Extensions",
+        name: "Chrome Ext",
         level: 88,
-        image: "https://img.icons8.com/color/48/chrome.png",
+        image: "https://upload.wikimedia.org/wikipedia/commons/e/e1/Google_Chrome_icon_%28February_2022%29.svg",
         experience: "1+ years",
       },
       {
-        name: "Creative Writing",
+        name: "Technical Writing",
         level: 95,
-        image: "https://img.icons8.com/ios-filled/50/ffffff/pen.png",
+        icon: PenTool, // Using the classic Pen component
         experience: "6+ years",
       },
     ],
@@ -190,29 +192,37 @@ export default function Skills() {
 
           {/* Category Tabs */}
           <motion.div
-            className="mb-16"
+            className="mb-16 relative"
             variants={itemVariants}
             transition={{ delay: stagger.normal }}
           >
-            <div className="flex flex-wrap justify-center gap-3 md:gap-4">
+            <div className="flex overflow-x-auto pb-4 md:pb-0 hide-scrollbar snap-x snap-mandatory px-6 md:px-0 -mx-6 md:mx-0 md:flex-wrap md:justify-center gap-3 md:gap-4 scroll-smooth">
               {skillCategories.map((category, index) => (
                 <motion.button
                   key={index}
                   onClick={() => setActiveCategory(index)}
-                  className={`px-6 py-4 rounded-2xl font-medium text-sm md:text-base transition-all duration-400 ${activeCategory === index
-                    ? "bg-ivory text-prussian shadow-natural border-2 border-taupe"
-                    : "bg-ivory/10 text-taupe hover:text-ivory hover:bg-ivory shadow-soft border border-transparent"
+                  className={`group relative px-6 py-3 rounded-full text-sm font-medium transition-all duration-500 whitespace-nowrap snap-center shrink-0 ${activeCategory === index
+                    ? "text-prussian bg-ivory shadow-[0_0_20px_rgba(245,243,239,0.3)]"
+                    : "text-taupe hover:text-ivory bg-white/5 border border-white/5 hover:border-gold/30 hover:bg-gold/5"
                     }`}
-                  whileHover={prefersReducedMotion ? {} : { scale: 1.02, y: -1 }}
-                  whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
-                  animate={{
-                    scale: activeCategory === index ? 1.02 : 1
-                  }}
-                  transition={{ duration: timing.fast, ease: appleEasing.spring }}
+                  whileHover={prefersReducedMotion ? {} : { y: -2 }}
+                  whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
                 >
-                  <span className="mr-3 text-lg">{category.icon}</span>
-                  <span className="hidden sm:inline">{category.fullTitle}</span>
-                  <span className="sm:hidden">{category.title}</span>
+                  <span className="relative z-10 flex items-center gap-2">
+                    {/* Minimal dot indicator for active state */}
+                    {activeCategory === index && (
+                      <motion.span
+                        layoutId="activeSkillDot"
+                        className="w-1.5 h-1.5 rounded-full bg-gold"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.3 }}
+                      />
+                    )}
+                    <span className="mr-2 text-lg">{category.icon}</span>
+                    <span className="hidden sm:inline">{category.fullTitle}</span>
+                    <span className="sm:hidden">{category.title}</span>
+                  </span>
                 </motion.button>
               ))}
             </div>
@@ -220,7 +230,7 @@ export default function Skills() {
 
           {/* Skills Grid */}
           <motion.div
-            className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
+            className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8"
             variants={containerVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
@@ -228,41 +238,48 @@ export default function Skills() {
             {skillCategories[activeCategory].skills.map((skill, index) => (
               <motion.div
                 key={`${activeCategory}-${index}`}
-                className="group bg-navy-soft/30 backdrop-blur-sm border border-ivory/5 rounded-3xl p-6 md:p-8 shadow-[0_0_50px_rgba(0,0,0,0.2)] hover:border-gold/30 transition-all duration-500"
+                className="group bg-navy-soft/30 backdrop-blur-sm border border-ivory/5 rounded-2xl md:rounded-3xl p-4 md:p-8 shadow-[0_0_20px_rgba(0,0,0,0.1)] hover:border-gold/30 transition-all duration-500 hover:shadow-[0_0_30px_rgba(212,175,55,0.1)]"
                 variants={itemVariants}
                 whileHover={prefersReducedMotion ? {} : { scale: 1.02, y: -4 }}
                 transition={{ duration: timing.fast, ease: appleEasing.spring }}
               >
                 {/* Skill Icon */}
                 <motion.div
-                  className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-6 relative"
+                  className="w-12 h-12 md:w-20 md:h-20 mx-auto mb-4 md:mb-6 relative flex items-center justify-center"
                   whileHover={prefersReducedMotion ? {} : { scale: 1.05 }}
                   transition={{ duration: timing.fast, ease: appleEasing.spring }}
                 >
                   <div className="absolute inset-0 bg-gold/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <img
-                    src={skill.image || "/placeholder.svg"}
-                    alt={`${skill.name} logo`}
-                    className="w-full h-full object-contain relative z-10 drop-shadow-md"
-                  />
+                  {skill.icon ? (
+                    <skill.icon
+                      className="relative z-10 text-ivory drop-shadow-md w-full h-full p-2 md:p-0"
+                      strokeWidth={1.5}
+                    />
+                  ) : (
+                    <img
+                      src={skill.image || "/placeholder.svg"}
+                      alt={`${skill.name} logo`}
+                      className={`w-full h-full object-contain relative z-10 drop-shadow-md ${skill.invert ? 'brightness-0 invert' : ''}`}
+                    />
+                  )}
                 </motion.div>
 
                 {/* Skill Name */}
-                <h3 className="text-xl md:text-2xl font-serif font-medium text-center mb-2 text-ivory group-hover:text-gold transition-colors duration-300">{skill.name}</h3>
+                <h3 className="text-sm md:text-2xl font-serif font-medium text-center mb-2 text-ivory group-hover:text-gold transition-colors duration-300 leading-tight">{skill.name}</h3>
 
                 {/* Experience */}
-                <div className="flex items-center justify-center mb-6 text-xs uppercase tracking-[0.1em] text-taupe font-medium">
-                  <TrendingUp size={14} className="mr-2 text-gold" />
+                <div className="flex items-center justify-center mb-4 md:mb-6 text-[10px] md:text-xs uppercase tracking-[0.1em] text-taupe font-medium">
+                  <TrendingUp className="mr-1 md:mr-2 text-gold w-3 h-3 md:w-4 md:h-4" />
                   {skill.experience}
                 </div>
 
                 {/* Proficiency Bar */}
-                <div className="mb-6">
+                <div className="mb-4 md:mb-6">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs uppercase tracking-wider text-taupe">Proficiency</span>
-                    <span className="text-xs font-medium text-gold font-mono">{skill.level}%</span>
+                    <span className="text-[10px] md:text-xs uppercase tracking-wider text-taupe hidden md:block">Proficiency</span>
+                    <span className="text-[10px] md:text-xs font-medium text-gold font-mono w-full text-center md:w-auto">{skill.level}%</span>
                   </div>
-                  <div className="w-full bg-ivory/5 rounded-full h-1.5 border border-ivory/5 overflow-hidden">
+                  <div className="w-full bg-ivory/5 rounded-full h-1 md:h-1.5 border border-ivory/5 overflow-hidden">
                     <motion.div
                       className="h-full bg-gradient-to-r from-gold to-warm-gold rounded-full shadow-[0_0_10px_rgba(212,175,55,0.5)]"
                       initial={{ width: 0 }}
@@ -278,7 +295,7 @@ export default function Skills() {
 
                 {/* Star Rating */}
                 <motion.div
-                  className="flex justify-center gap-1"
+                  className="flex justify-center gap-0.5 md:gap-1"
                   initial={{ opacity: 0 }}
                   animate={isInView ? { opacity: 1 } : { opacity: 0 }}
                   transition={{
@@ -299,8 +316,7 @@ export default function Skills() {
                       }}
                     >
                       <Star
-                        size={14}
-                        className={`${starIndex < Math.floor(skill.level / 20)
+                        className={`w-2.5 h-2.5 md:w-3.5 md:h-3.5 ${starIndex < Math.floor(skill.level / 20)
                           ? "text-gold fill-gold drop-shadow-[0_0_5px_rgba(212,175,55,0.5)]"
                           : "text-taupe/20"
                           }`}

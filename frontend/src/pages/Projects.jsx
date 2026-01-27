@@ -177,27 +177,35 @@ export default function Projects() {
 
           {/* Category Filter */}
           <motion.div
-            className="mb-16"
+            className="mb-16 relative"
             variants={itemVariants}
             transition={{ delay: stagger.normal }}
           >
-            <div className="flex flex-wrap justify-center gap-3 md:gap-4">
+            <div className="flex overflow-x-auto pb-4 md:pb-0 hide-scrollbar snap-x snap-mandatory px-6 md:px-0 -mx-6 md:mx-0 md:flex-wrap md:justify-center gap-3 md:gap-4 scroll-smooth">
               {categories.map((category) => (
                 <motion.button
                   key={category.full}
                   onClick={() => setSelectedCategory(category.full)}
-                  className={`px-6 py-4 rounded-2xl font-medium text-sm md:text-base transition-all duration-400 ${selectedCategory === category.full
-                    ? "bg-ivory text-prussian shadow-natural border-2 border-taupe"
-                    : "bg-ivory/10 text-taupe hover:text-ivory hover:bg-ivory shadow-soft border border-transparent"
+                  className={`group relative px-6 py-3 rounded-full text-sm font-medium transition-all duration-500 whitespace-nowrap snap-center shrink-0 ${selectedCategory === category.full
+                    ? "text-prussian bg-ivory shadow-[0_0_20px_rgba(245,243,239,0.3)]"
+                    : "text-taupe hover:text-ivory bg-white/5 border border-white/5 hover:border-gold/30 hover:bg-gold/5"
                     }`}
-                  whileHover={prefersReducedMotion ? {} : { scale: 1.02, y: -1 }}
-                  whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
-                  animate={{
-                    scale: selectedCategory === category.full ? 1.02 : 1
-                  }}
-                  transition={{ duration: timing.fast, ease: appleEasing.spring }}
+                  whileHover={prefersReducedMotion ? {} : { y: -2 }}
+                  whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
                 >
-                  {category.full}
+                  <span className="relative z-10 flex items-center gap-2">
+                    {/* Minimal dot indicator for active state */}
+                    {selectedCategory === category.full && (
+                      <motion.span
+                        layoutId="activeDot"
+                        className="w-1.5 h-1.5 rounded-full bg-gold"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.3 }}
+                      />
+                    )}
+                    {category.full}
+                  </span>
                 </motion.button>
               ))}
             </div>
