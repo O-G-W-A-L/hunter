@@ -105,22 +105,22 @@ export default function Contact() {
         }} />
       </div>
 
-      <div className="container-luxury relative z-10 w-full max-w-[95vw] lg:max-w-7xl xl:max-w-[90rem]">
+      <div className="container-luxury relative z-10">
         <motion.div
           ref={ref}
-          className="max-w-6xl mx-auto"
+          className="w-full max-w-6xl mx-auto"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.8 }}
         >
           {/* Header */}
           <motion.div
-            className="text-center mb-12 md:mb-20"
+            className="text-center mb-16 md:mb-24"
             initial={{ opacity: 0, y: 50 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-serif font-medium mb-6 text-ivory tracking-tight leading-tight">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-serif font-medium mb-8 text-ivory tracking-tight leading-tight">
               Let's Connect
             </h2>
             <p className="text-lg md:text-xl lg:text-2xl text-light-grey max-w-4xl mx-auto leading-relaxed px-4">
@@ -128,20 +128,19 @@ export default function Contact() {
               create something extraordinary.
             </p>
             <motion.div
-              className="w-24 md:w-32 h-px bg-gradient-to-r from-gold to-warm-gold mx-auto mt-8"
+              className="w-24 md:w-32 h-px bg-gradient-to-r from-gold to-warm-gold mx-auto mt-10"
               initial={{ scaleX: 0 }}
               animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
               transition={{ duration: timing.normal, delay: timing.normal, ease: appleEasing.smooth }}
             />
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-10 md:gap-20">
-            {/* Contact Form */}
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
             {/* Contact Form */}
             <motion.div
-              className="bg-navy-soft/30 backdrop-blur-sm border border-ivory/5 rounded-2xl md:rounded-3xl p-6 md:p-10 lg:p-12 shadow-[0_0_50px_rgba(0,0,0,0.2)]"
-              initial={{ opacity: 0, x: -50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+              className="w-full bg-navy-soft/30 backdrop-blur-sm border border-ivory/5 rounded-2xl md:rounded-3xl p-6 md:p-10 lg:p-12 shadow-[0_0_50px_rgba(0,0,0,0.2)]"
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <div className="mb-10">
@@ -231,12 +230,11 @@ export default function Contact() {
 
             {/* Contact Info & Social Links */}
             <motion.div
-              className="space-y-10"
-              initial={{ opacity: 0, x: 50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+              className="w-full space-y-10"
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              {/* Contact Info */}
               {/* Contact Info */}
               <div className="bg-navy-soft/30 backdrop-blur-sm border border-ivory/5 rounded-2xl md:rounded-3xl p-6 md:p-10 shadow-[0_0_50px_rgba(0,0,0,0.2)]">
                 <h3 className="text-2xl md:text-3xl font-serif font-medium text-ivory mb-8 tracking-tight">Direct Lines</h3>
@@ -247,7 +245,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <p className="text-xs uppercase tracking-[0.1em] text-taupe mb-1">Email</p>
-                      <p className="text-ivory font-serif text-lg">hunterswe01@gmail.com</p>
+                      <p className="text-ivory font-serif text-lg break-all">hunterswe01@gmail.com</p>
                     </div>
                   </div>
                   <div className="flex items-center group">
