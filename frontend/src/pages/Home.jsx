@@ -1,30 +1,17 @@
 "use client"
 
-import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import {
-  appleEasing,
-  timing,
-  stagger,
   containerVariants,
   itemVariants,
   prefersReducedMotion
 } from "../utils/animations"
 
 export default function Home() {
-  const [key, setKey] = useState(0)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setKey((prevKey) => prevKey + 1)
-    }, 8000)
-    return () => clearInterval(interval)
-  }, [])
-
   return (
     <div id="home" className="min-h-screen bg-prussian text-ivory relative overflow-hidden grain pt-20 md:pt-24 lg:pt-32">
-      {/* Old Money Editorial Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.02]">
+      {/* Editorial Background Pattern */}
+      <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
         <div className="absolute inset-0" style={{
           backgroundImage: `radial-gradient(circle at 25% 25%, rgba(212, 175, 55, 0.1) 2px, transparent 2px),
                            radial-gradient(circle at 75% 75%, rgba(139, 125, 107, 0.1) 1px, transparent 1px),
@@ -34,131 +21,51 @@ export default function Home() {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 flex flex-col justify-center items-center min-h-screen container-luxury w-full max-w-[95vw] lg:max-w-7xl xl:max-w-[90rem]">
-        {/* Hero Section */}
+      <div className="relative z-10 flex flex-col justify-center items-center min-h-[calc(100vh-6rem)] container-luxury w-full max-w-[95vw] lg:max-w-7xl xl:max-w-[90rem] mx-auto">
         <motion.div
           className="text-center w-full mx-auto"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {/* Greeting */}
-          <motion.div
-            className="mb-12"
-            variants={itemVariants}
-            transition={{ delay: stagger.tight }}
-          >
-            <motion.span
-              className="inline-block text-xl md:text-2xl text-taupe font-medium mb-6 tracking-wide"
-              animate={prefersReducedMotion ? {} : { opacity: [0.7, 1, 0.7] }}
-              transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, ease: appleEasing.smooth }}
-            >
-              Hello, World! 👋
-            </motion.span>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-serif font-medium leading-none tracking-tight">
-              I'm a{" "}
-              <motion.span
-                className="text-gold"
-                animate={prefersReducedMotion ? {} : {
-                  textShadow: [
-                    "0 0 0 rgba(212, 175, 55, 0)",
-                    "0 0 20px rgba(212, 175, 55, 0.3)",
-                    "0 0 0 rgba(212, 175, 55, 0)"
-                  ]
-                }}
-                transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, ease: appleEasing.smooth }}
-              >
-                SOFTWARE ENGINEER
-              </motion.span>
+          {/* Main Introduction */}
+          <motion.div className="mb-8 w-full" variants={itemVariants}>
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-serif font-medium leading-none tracking-tight text-ivory mb-6">
+              Hi, I'm Hunter.
             </h1>
+            <p className="text-xl md:text-2xl lg:text-3xl text-taupe font-light max-w-3xl mx-auto leading-relaxed tracking-wide">
+              I'm a Software Engineer building products, platforms, and business systems that solve operational and human problems.
+            </p>
           </motion.div>
 
-          {/* Name Animation */}
-          <motion.div
-            className="mb-12"
-            variants={itemVariants}
-            transition={{ delay: stagger.normal }}
-          >
-            <motion.h2 className="text-xl md:text-2xl font-light mb-8 text-taupe tracking-wide">
-              My name is
-            </motion.h2>
-            <motion.div key={key} className="relative px-4">
-              <motion.h1
-                className="flex flex-wrap justify-center gap-x-4 md:gap-x-8 gap-y-2 font-serif font-medium text-ivory leading-none"
-                style={{ fontSize: "clamp(2.5rem, 5vw + 1rem, 7rem)" }}
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: timing.slower, ease: appleEasing.smooth }}
-              >
-                {["OGWAL", "JONATHAN", "AMOS"].map((word, wordIndex) => (
-                  <span key={`word-${wordIndex}`} className="whitespace-nowrap inline-block">
-                    {Array.from(word).map((char, charIndex) => (
-                      <motion.span
-                        key={`${key}-${wordIndex}-${charIndex}`}
-                        className="inline-block"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{
-                          duration: timing.normal,
-                          delay: (wordIndex * 5 + charIndex) * stagger.tight,
-                          ease: appleEasing.smooth,
-                        }}
-                        whileHover={prefersReducedMotion ? {} : {
-                          scale: 1.05,
-                          color: '#D4AF37', // Gold color on hover
-                          transition: { duration: timing.fast, ease: appleEasing.spring }
-                        }}
-                      >
-                        {char}
-                      </motion.span>
-                    ))}
-                  </span>
-                ))}
-              </motion.h1>
-              <motion.p
-                className="text-lg md:text-xl lg:text-2xl text-taupe font-medium mt-8 tracking-[0.2em] uppercase"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: timing.slower, duration: timing.normal, ease: appleEasing.smooth }}
-              >
-                — THE HUNTER —
-              </motion.p>
-            </motion.div>
+          {/* Official Name Signature Credential */}
+          <motion.div className="mb-14" variants={itemVariants}>
+            <span className="text-xs uppercase tracking-[0.3em] text-gold/60 font-medium">
+              Ogwal Jonathan Amos
+            </span>
           </motion.div>
 
-          {/* Tagline */}
-          <motion.p
-            className="text-lg md:text-xl lg:text-2xl text-light-grey max-w-4xl mx-auto leading-relaxed mb-16"
-            variants={itemVariants}
-            transition={{ delay: stagger.loose }}
-          >
-            Crafting digital experiences that solve real-world problems with elegance and precision.
-            <br />
-            <span className="text-ivory font-medium">Let's build something extraordinary together.</span>
-          </motion.p>
+          {/* Minimal Luxury Divider */}
+          <motion.div className="w-12 h-px bg-gold/20 mx-auto mb-14" variants={itemVariants} />
 
           {/* CTA Buttons */}
-          <motion.div
-            className="flex flex-col sm:flex-row gap-8 justify-center items-center"
-            variants={itemVariants}
-            transition={{ delay: stagger.looser }}
-          >
+          <motion.div className="flex flex-col sm:flex-row gap-6 justify-center items-center" variants={itemVariants}>
             <motion.button
-              onClick={() => document.getElementById("projects").scrollIntoView({ behavior: "smooth" })}
-              className="group relative bg-ivory text-prussian border border-ivory px-12 py-4 rounded-full overflow-hidden transition-all duration-500 hover:shadow-[0_0_30px_rgba(245,243,239,0.3)] hover:scale-105"
-              whileHover={prefersReducedMotion ? {} : { scale: 1.05 }}
+              onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
+              className="group relative bg-ivory text-prussian border border-ivory px-12 py-4 rounded-full overflow-hidden transition-all duration-500 hover:shadow-[0_0_30px_rgba(245,243,239,0.2)]"
+              whileHover={prefersReducedMotion ? {} : { scale: 1.03 }}
               whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
             >
-              <span className="relative z-10 font-serif tracking-[0.2em] uppercase text-xs md:text-sm font-semibold">
-                View My Work
+              <span className="relative z-10 font-serif tracking-[0.2em] uppercase text-xs md:text-sm font-semibold transition-colors duration-500 group-hover:text-prussian">
+                View Systems
               </span>
               <div className="absolute inset-0 bg-gold opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out" />
             </motion.button>
 
             <motion.button
-              onClick={() => document.getElementById("contact").scrollIntoView({ behavior: "smooth" })}
+              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
               className="group relative bg-transparent text-ivory border border-ivory/30 px-12 py-4 rounded-full overflow-hidden transition-all duration-500 hover:border-gold hover:shadow-[0_0_20px_rgba(212,175,55,0.15)]"
-              whileHover={prefersReducedMotion ? {} : { scale: 1.05 }}
+              whileHover={prefersReducedMotion ? {} : { scale: 1.03 }}
               whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
             >
               <span className="relative z-10 font-serif tracking-[0.2em] uppercase text-xs md:text-sm font-semibold group-hover:text-gold transition-colors duration-500">
@@ -168,10 +75,6 @@ export default function Home() {
           </motion.div>
         </motion.div>
       </div>
-
-
-    </div >
+    </div>
   )
 }
-
-

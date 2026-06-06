@@ -2,7 +2,7 @@
 
 import React, { useState } from "react"
 import { motion, useInView } from "framer-motion"
-import { Code, Lightbulb, Target, Users } from "lucide-react"
+import { Server, Package, GitBranch, Shield } from "lucide-react"
 import ProfileImage from '../assets/test.jpg'
 import {
   appleEasing,
@@ -10,31 +10,29 @@ import {
   stagger,
   containerVariants,
   itemVariants,
-  hoverLift,
-  pressAnimation,
   prefersReducedMotion
 } from "../utils/animations"
 
 const highlights = [
   {
-    icon: Code,
-    title: "Technical Excellence",
-    description: "Crafting clean, efficient code with modern technologies",
+    icon: Server,
+    title: "Systems Architecture",
+    description: "Production systems built to manage real-world operational complexity.",
   },
   {
-    icon: Lightbulb,
-    title: "Creative Problem Solving",
-    description: "Turning complex challenges into elegant solutions",
+    icon: Package,
+    title: "Product Development",
+    description: "From concept through development to deployment.",
   },
   {
-    icon: Target,
-    title: "Goal-Oriented",
-    description: "Focused on delivering results that matter",
+    icon: GitBranch,
+    title: "Technical Decision-Making",
+    description: "Architecture and infrastructure choices guided by problem constraints.",
   },
   {
-    icon: Users,
-    title: "Collaborative Spirit",
-    description: "Building bridges between ideas and implementation",
+    icon: Shield,
+    title: "Reliability & Quality",
+    description: "Systems built for production stability, data integrity, and maintainability.",
   },
 ]
 
@@ -48,7 +46,7 @@ export default function About() {
       id="about"
       className="min-h-screen bg-prussian text-ivory section-luxury relative overflow-x-hidden grain"
     >
-      {/* Old Money Editorial Background Pattern */}
+      {/* Editorial Background Pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
         <div className="absolute inset-0" style={{
           backgroundImage: `radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 1px, transparent 1px),
@@ -73,10 +71,13 @@ export default function About() {
             transition={{ delay: stagger.tight }}
           >
             <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-medium mb-8 text-ivory tracking-tight">
-              About The Hunter
+              Approach
             </h2>
+            <p className="text-xl md:text-2xl text-light-grey max-w-4xl mx-auto leading-relaxed">
+              Building software that solves operational, business, and human problems.
+            </p>
             <motion.div
-              className="w-32 h-px bg-gradient-to-r from-gold to-warm-gold mx-auto"
+              className="w-32 h-px bg-gradient-to-r from-gold to-warm-gold mx-auto mt-8"
               initial={{ scaleX: 0 }}
               animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
               transition={{ duration: timing.normal, delay: timing.normal, ease: appleEasing.smooth }}
@@ -90,8 +91,6 @@ export default function About() {
               variants={itemVariants}
               transition={{ delay: stagger.normal }}
             >
-              {/* Profile Image */}
-              {/* Profile Image */}
               <motion.div
                 className="w-full max-w-sm mx-auto relative"
                 whileHover={prefersReducedMotion ? {} : { y: -5 }}
@@ -107,7 +106,7 @@ export default function About() {
 
                   <img
                     src={ProfileImage}
-                    alt="Ogwal Jonathan Amos"
+                    alt="Hunter Ogwal"
                     className="w-full h-full object-cover transition-all duration-700 filter grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-110 ease-out"
                   />
 
@@ -125,16 +124,13 @@ export default function About() {
             >
               <div className="space-y-6 text-lg md:text-xl leading-relaxed text-light-grey">
                 <p>
-                  I'm a <span className="text-ivory font-medium">software engineer</span> who believes in the
-                  power of technology to transform ideas into reality. My journey began with curiosity and has evolved
-                  into a passion for creating digital solutions that make a difference.
+                  Every system I build starts with a problem worth solving. I work across healthcare, agriculture, commerce, and digital platforms, domains where operational complexity demands serious engineering.
                 </p>
                 <p>
-                  I focus on solving real-world problems through innovative technology, crafting experiences that are
-                  both functional and beautiful.
+                  My approach is practical: understand the workflow, design the architecture, ship the system, and ensure it works reliably in production. I prioritize data integrity, error handling, and maintainability over novelty.
                 </p>
                 <p>
-                  I can both build and tell a story through code, communicate with clarity, and deliver effectively.
+                  I'm interested in building things that last, products that are meaningful, infrastructure that scales, and code that other engineers can understand and improve.
                 </p>
               </div>
 
@@ -149,16 +145,17 @@ export default function About() {
                   className="text-2xl font-serif font-medium text-ivory mb-8"
                   variants={itemVariants}
                 >
-                  What Drives Me
+                  Engineering Focus
                 </motion.h4>
                 <div className="grid gap-4">
                   {highlights.map((highlight, index) => (
                     <motion.div
                       key={index}
-                      className={`p-6 rounded-xl cursor-pointer transition-all duration-400 ${activeHighlight === index
+                      className={`p-6 rounded-xl cursor-pointer transition-all duration-400 ${
+                        activeHighlight === index
                           ? "bg-navy-soft shadow-natural border-2 border-taupe"
                           : "bg-navy-soft/10 hover:bg-navy-soft hover:shadow-soft border border-transparent"
-                        }`}
+                      }`}
                       onClick={() => setActiveHighlight(index)}
                       variants={itemVariants}
                       whileHover={prefersReducedMotion ? {} : { scale: 1.01 }}
@@ -167,10 +164,11 @@ export default function About() {
                     >
                       <div className="flex items-start space-x-5">
                         <motion.div
-                          className={`p-3 rounded-lg ${activeHighlight === index
+                          className={`p-3 rounded-lg ${
+                            activeHighlight === index
                               ? "bg-gold text-prussian"
                               : "bg-taupe text-ivory"
-                            }`}
+                          }`}
                           animate={{
                             scale: activeHighlight === index ? 1.05 : 1,
                           }}
