@@ -60,7 +60,7 @@ export default function Footer() {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            {["about", "skills", "projects", "contact"].map((link) => (
+            {["about", "capabilities", "projects", "contact"].map((link) => (
               <button
                 key={link}
                 onClick={() => scrollToSection(link)}
