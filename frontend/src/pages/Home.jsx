@@ -28,27 +28,30 @@ export default function Home() {
           initial="hidden"
           animate="visible"
         >
-          {/* Main Introduction */}
-          <motion.div className="mb-8 w-full" variants={itemVariants}>
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-serif font-medium leading-none tracking-tight text-ivory mb-6">
-              Hi, I'm Hunter.
+          {/* Hero */}
+          <motion.div className="mb-4 w-full" variants={itemVariants}>
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-serif font-medium leading-none tracking-tight text-ivory mb-4">
+              Jonathan Amos Ogwal
             </h1>
+            <p className="text-xs sm:text-sm uppercase tracking-[0.35em] text-gold/50 font-medium mb-6">
+              Known as Hunter
+            </p>
             <p className="text-xl md:text-2xl lg:text-3xl text-taupe font-light max-w-3xl mx-auto leading-relaxed tracking-wide">
-              I'm a Software Engineer building products, platforms, and business systems that solve operational and human problems.
+              Software Engineer
             </p>
           </motion.div>
 
-          {/* Official Name Signature Credential */}
+          {/* Supporting line */}
           <motion.div className="mb-14" variants={itemVariants}>
-            <span className="text-xs uppercase tracking-[0.3em] text-gold/60 font-medium">
-              Ogwal Jonathan Amos
-            </span>
+            <p className="text-base md:text-lg text-ivory/60 max-w-2xl mx-auto leading-relaxed">
+              I build backend systems and full-stack applications for production environments.
+            </p>
           </motion.div>
 
-          {/* Minimal Luxury Divider */}
+          {/* Minimal Divider */}
           <motion.div className="w-12 h-px bg-gold/20 mx-auto mb-14" variants={itemVariants} />
 
-          {/* CTA Buttons */}
+          {/* CTA */}
           <motion.div className="flex flex-col sm:flex-row gap-6 justify-center items-center" variants={itemVariants}>
             <motion.button
               onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
